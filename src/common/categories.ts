@@ -34,9 +34,9 @@ export const projectCategories: projectCategoryType[] = [
 ];
 
 // // Function to get all project IDs
-// export function getAllProjectIds(): string[] {
-//   return projects.map((project) => project.id);
-// }
+export function getAllProjectCategories(): string[] {
+  return projectCategories.map((project) => project.key);
+}
 
 // // Function to get project data by ID
 // export async function getProjectData(id: string): Promise<Project | undefined> {

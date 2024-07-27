@@ -13,7 +13,7 @@ const Layout = ({ children, categories }: LayoutProps ) => {
   return (
     <div className='min-h-screen'>
       <Navbar categories={categories} />
-      <div className='my-5'>
+      <div className='my-10'>
         {children}
       </div>
       <Footer />

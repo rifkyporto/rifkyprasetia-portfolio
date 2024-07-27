@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '@/components/Layout';
-import { projectCategories } from '@/common'; // Import the data
+import { projectCategories, getAllProjectCategories } from '@/common'; // Import the data
 import { projectCategoryType } from '@/common/categories.type'; // Import the data
 
 interface HomePageProps {
@@ -8,8 +8,8 @@ interface HomePageProps {
 }
 
 export async function getStaticPaths() {
-  const paths = projectCategories().map((id) => ({
-    params: { id: id.toString() },
+  const paths = getAllProjectCategories().map((key) => ({
+    params: { id: key.toString() },
   }));
 
   return {
