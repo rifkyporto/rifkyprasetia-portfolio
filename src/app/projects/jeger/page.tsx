@@ -2,12 +2,15 @@ import React from 'react'
 import Layout from '@/components/Layout';
 import { projectCategories } from '@/common'; // Import the data
 import { projectCategoryType } from '@/common/categories.type'; // Import the data
+import FadeInContainer from '@/components/FadeInContainer';
 
 interface HomePageProps {
   categories: projectCategoryType[];
 }
 
-const ProjectDetail: React.FC<HomePageProps> = ({ categories }) => {
+const ProjectDetail: React.FC<HomePageProps> = async () => {
+  const categories: projectCategoryType[] = projectCategories;
+
   return (
     <Layout categories={categories} >
       <div className='max-w-[55rem] mx-auto'>
@@ -17,9 +20,14 @@ const ProjectDetail: React.FC<HomePageProps> = ({ categories }) => {
             backgroundImage: "url('https://static.wixstatic.com/media/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.jpg/v1/fit/w_1000,h_576,q_90/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.webp')"
           }}
         >
-          <div className="w-[28rem] ml-[5rem] mb-[10rem] z-10 text-center text-white p-4">
-            <h1 className="text-6xl font-bold text-start mb-2 leading-[5rem]">#Jembatan by Chandra Liow</h1>
+          <div className='overflow-hidden h-[20rem] w-full ml-20'>
+            <FadeInContainer>
+              <div className="w-[28rem] mb-[10rem] z-10 text-center text-white p-4 flex justify-end items-end">
+                <h1 className="text-6xl font-bold text-start mb-2 leading-[5rem]">#Jembatan by Chandra Liow</h1>
+              </div>
+            </FadeInContainer>
           </div>
+
         </div>
         <div className='flex gap-[10rem] my-20'>
           <div className='flex flex-col gap-8'>
@@ -54,15 +62,3 @@ const ProjectDetail: React.FC<HomePageProps> = ({ categories }) => {
 }
 
 export default ProjectDetail;
-
-// Implement getStaticProps to use SSG
-export async function getStaticProps() {
-  // Fetch or import the data for SSG
-  const categories = projectCategories; // This could be an API call if needed
-
-  return {
-    props: {
-      categories,
-    },
-  };
-}

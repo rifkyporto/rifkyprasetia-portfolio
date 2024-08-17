@@ -1,8 +1,10 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 import { projectCategories } from "@/common";
 import { projectCategoryType } from "@/common/categories.type";
-import { useRouter } from 'next/router';
+import { useSearchParams, usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 type NavbarType = {
@@ -10,8 +12,11 @@ type NavbarType = {
 }
 
 const Navbar = ({ categories }: NavbarType) => {
-  const router = useRouter();
-  console.log({categories, router: router.query})
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+
+  const pathname = usePathname()
+  // console.log({categories, router: router.query})
   return (
     <nav className='my-10 flex flex-col gap-8'>
       <div className='flex flex-col justify-center items-center gap-3'>
@@ -41,8 +46,8 @@ const Navbar = ({ categories }: NavbarType) => {
               href={`${category.key === "all" ? "/" : category.key}`}
               className={cn(
                 'text-[1.3rem] font-semibold text-[rgb(128,128,128)] hover:text-[rgb(183,191,153)] transition-all duration-300',
-                router?.query?.category === `${category.key}` && 'text-[rgb(237,170,37)]',
-                router?.pathname === `/` && category.key === "all" && 'text-[rgb(237,170,37)]',
+                categoryParam === `${category.key}` && 'text-[rgb(237,170,37)]',
+                pathname === `/` && category.key === "all" && 'text-[rgb(237,170,37)]',
               )}
             >
               <>{category.name.toUpperCase()}</>
@@ -54,7 +59,7 @@ const Navbar = ({ categories }: NavbarType) => {
           href={`/contact`}
           className={cn(
             'text-[1.3rem] font-semibold text-[rgb(128,128,128)]',
-            router?.pathname === `/contact` && 'text-[rgb(237,170,37)]',
+            pathname === `/contact` && 'text-[rgb(237,170,37)]',
           )}
         >
           <>CONTACT</>
