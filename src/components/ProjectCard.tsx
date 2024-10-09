@@ -1,13 +1,16 @@
 "use client";
 
+import React, { MouseEventHandler, useState } from 'react'
+import Link from 'next/link';
+import { IProject } from '@/common/projects.type';
 import { cn } from '@/lib/utils';
 import Image from 'next/image'
-import React, { MouseEventHandler, useState } from 'react'
 
 interface ProjectCardType {
   className?: string;
+  project: IProject;
 }
-const ProjectCard: React.FC = ({ className }: ProjectCardType) => {
+const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
   const [isOverlayInspect, setIsOverlayInspect] = React.useState<boolean>(false)
 
   const handleOnMouseEnter: MouseEventHandler = () => {
@@ -19,17 +22,18 @@ const ProjectCard: React.FC = ({ className }: ProjectCardType) => {
   }
 
   return (
-    <div className={className}>
+    <Link href={`/projects/${project?.id}`} className={className}>
       <div
-        className='relative z-0 h-auto cursor-pointer'
+        className='relative z-0 h-auto cursor-pointer w-full'
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
       >
         <img
-          src="https://static.wixstatic.com/media/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.jpg/v1/fit/w_972,h_548,q_90/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.webp"
-          alt="Vercel Logo"
+          // src="https://static.wixstatic.com/media/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.jpg/v1/fit/w_972,h_548,q_90/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.webp"
+          src={project?.cover_image_url}
+          alt={project?.title + " project"}
           // fill
-          className={`dark:invert ${isOverlayInspect && "grayscale"} transition-all duration-500 w-[100%] h-auto`}
+          className={`dark:invert ${isOverlayInspect && "grayscale brightness-75 contrast-100"} transition-all ease-out duration-400 w-[100%] h-[250px] object-cover`}
           // width={320}
           // height={100}
           // priority
@@ -44,12 +48,12 @@ const ProjectCard: React.FC = ({ className }: ProjectCardType) => {
                 isOverlayInspect ? "block" : "hidden"
               )}
             >
-              Chandra
+              {project?.title}
             </p>
           </div>
         )}
       </div>
-    </div>
+    </Link>
   )
 }
 

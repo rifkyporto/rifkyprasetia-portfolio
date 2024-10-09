@@ -11,7 +11,7 @@ type LayoutProps = {
 
 const Layout = ({ children, categories }: LayoutProps ) => {
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen w-screen'>
       <Navbar categories={categories} />
       <div className='my-10'>
         {children}

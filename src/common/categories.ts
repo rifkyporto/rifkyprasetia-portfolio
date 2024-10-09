@@ -9,7 +9,7 @@ export const projectCategories: projectCategoryType[] = [
   {
     id: 2,
     name: "Short Film",
-    key: "short-film",
+    key: "short-movie",
   },
   {
     id: 3,

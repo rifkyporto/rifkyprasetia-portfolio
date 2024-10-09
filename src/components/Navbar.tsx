@@ -43,11 +43,11 @@ const Navbar = ({ categories }: NavbarType) => {
           return (
             <Link
               key={index}
-              href={`${category.key === "all" ? "/" : category.key}`}
+              href={`${category.key === "all" ? "/" : `?category=${category.key}`}`}
               className={cn(
                 'text-[1.3rem] font-semibold text-[rgb(128,128,128)] hover:text-[rgb(183,191,153)] transition-all duration-300',
                 categoryParam === `${category.key}` && 'text-[rgb(237,170,37)]',
-                pathname === `/` && category.key === "all" && 'text-[rgb(237,170,37)]',
+                pathname === `/` && category.key === "all" && !categoryParam && 'text-[rgb(237,170,37)]',
               )}
             >
               <>{category.name.toUpperCase()}</>

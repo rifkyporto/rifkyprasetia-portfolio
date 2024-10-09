@@ -13,9 +13,9 @@ const Footer: React.FC = () => {
         </div>
         <div className='flex flex-col gap-4'>
           <p className='text-2xl font-semibold text-[#EDAA25]'>Socials</p>
-          <div>
+          <a href='https://www.instagram.com/rifkyprasetia/' target='_blank'>
             <Icon icon="akar-icons:instagram-fill" className='text-2xl mx-auto' />
-          </div>
+          </a>
         </div>
         <div className='flex flex-col gap-4 w-[15rem]'>
           <p className='text-2xl font-semibold text-[#B7BF99]'>Contact</p>
