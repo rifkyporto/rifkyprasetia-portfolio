@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 const Footer: React.FC = () => {
   return (
     <footer className='flex flex-col gap-12 mb-10'>
-      <div className='flex justify-center gap-20'>
+      <div className='flex justify-center md:flex-row flex-col md:gap-20 gap-6 md:mx-auto mx-10'>
         <div className='flex flex-col gap-4 w-[15rem]'>
           <p className='text-2xl font-semibold text-[#C44302]'>About</p>
           <div>
@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         <div className='flex flex-col gap-4'>
           <p className='text-2xl font-semibold text-[#EDAA25]'>Socials</p>
           <a href='https://www.instagram.com/rifkyprasetia/' target='_blank'>
-            <Icon icon="akar-icons:instagram-fill" className='text-2xl mx-auto' />
+            <Icon icon="akar-icons:instagram-fill" className='text-2xl md:mx-auto' />
           </a>
         </div>
         <div className='flex flex-col gap-4 w-[15rem]'>

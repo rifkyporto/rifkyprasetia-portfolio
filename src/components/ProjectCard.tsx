@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { IProject } from '@/common/projects.type';
 import { cn } from '@/lib/utils';
 import Image from 'next/image'
+import { Icon } from '@iconify/react';
 
 interface ProjectCardType {
   className?: string;
@@ -22,18 +23,21 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
   }
 
   return (
-    <Link href={`/projects/${project?.id}`} className={className}>
+    <Link href={`/projects/${project?.id}`} className={cn('relative w-full', className)}>
       <div
-        className='relative z-0 h-auto cursor-pointer w-full'
+        className='relative z-0 cursor-pointer w-full pb-[56.25%]'
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
+        style={{ aspectRatio: '16 / 9' }}
       >
+        {/* <Icon icon="mdi:external-link" className='sm:hidden absolute right-3 top-3 z-[99999999] text-2xl' /> */}
+        <Icon icon="uiw:information-o" className='sm:hidden absolute right-3 top-3 z-[99999999] text-xl' />
         <img
           // src="https://static.wixstatic.com/media/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.jpg/v1/fit/w_972,h_548,q_90/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.webp"
           src={project?.cover_image_url}
           alt={project?.title + " project"}
           // fill
-          className={`dark:invert ${isOverlayInspect && "grayscale brightness-75 contrast-100"} transition-all ease-out duration-400 w-[100%] h-[250px] object-cover`}
+          className={`absolute inset-0 dark:invert ${isOverlayInspect && "grayscale brightness-75 contrast-100"} transition-all ease-out duration-400 w-[100%] h-full object-cover`}
           // width={320}
           // height={100}
           // priority

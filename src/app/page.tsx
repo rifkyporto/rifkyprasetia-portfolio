@@ -16,9 +16,22 @@ export default async function Home({ searchParams }: { searchParams: { category?
   const category = searchParams?.category
   console.log({category})
   let query = supabase
-    .from('projects') // Adjust this to your table name
-    .select('*')
+    .from('project_categories') // Adjust this to your table name
+    .select(`
+      *,
+      projects (id, title, position, cover_image_url, role, date_month_project)
+    `)
     .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
+    // .ilike("category_id", `%${typeQuery}%`)
+
+  // let query = await supabase
+  //   .from('project_categories')
+  //   .select(`
+  //     *,
+  //     projects (id, title, position, cover_image_url, role, date_month_project)
+  //   `)
+  //   .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
+    // .ilike("projects.title", `%${searchQuery}%`)
     // .ilike("category_id", `%${typeQuery}%`)
 
   if (category) {
@@ -28,13 +41,18 @@ export default async function Home({ searchParams }: { searchParams: { category?
   const { data: projects, error } = await query
 
   console.log({projects})
+
+  const allProjects = projects?.map((project) => {
+    return project.projects;
+  }).sort((a, b) => a.position - b.position)
+
   // Fetch or import the data
   const categories: projectCategoryType[] = projectCategories;
 
   return (
     <Layout categories={categories} >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
-        {projects?.map((project) => {
+        {allProjects?.map((project) => {
           return (
             <ProjectCard project={project} />
           )
