@@ -44,9 +44,17 @@ export default async function Home({ searchParams }: { searchParams: { category?
 
   console.log({projects})
 
+  if (category) {
+    projects?.sort((a, b) => a?.position - b?.position)
+  }
+
   const allProjects = projects?.map((project) => {
     return project.projects;
-  })?.sort((a, b) => a?.position - b?.position)
+  })
+
+  if (!category) {
+    allProjects?.sort((a, b) => a?.position - b?.position)
+  }
 
   // Fetch or import the data
   const categories: projectCategoryType[] = projectCategories;
