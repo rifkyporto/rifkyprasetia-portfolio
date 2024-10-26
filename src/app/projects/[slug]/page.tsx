@@ -26,7 +26,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       category (name),
       showcase_project (*)
     `)
-    .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
+    // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
     .eq('id', slug)
     // .innerJoin('users', 'projects.user_id', 'users.id');  // Joining the `users` table
     // .ilike("category_id", `%${typeQuery}%`)

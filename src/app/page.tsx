@@ -21,7 +21,7 @@ export default async function Home({ searchParams }: { searchParams: { category?
       *,
       projects (id, title, position, cover_image_url, role, date_month_project)
     `)
-    .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
+    // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
     // .ilike("category_id", `%${typeQuery}%`)
 
   // let query = await supabase
