@@ -9,6 +9,8 @@ interface HomePageProps {
   categories: projectCategoryType[];
 }
 
+export const dynamic = "force-dynamic";
+
 // This function will be called on the server during the build
 export default async function Home({ searchParams }: { searchParams: { category?: string } }) {
   const supabase = createClient();
@@ -19,7 +21,7 @@ export default async function Home({ searchParams }: { searchParams: { category?
     .from('project_categories') // Adjust this to your table name
     .select(`
       *,
-      projects (id, title, position, cover_image_url, role, date_month_project)
+      projects (*)
     `)
     // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
     // .ilike("category_id", `%${typeQuery}%`)
