@@ -8,7 +8,7 @@ import FadeInContainer from '@/components/FadeInContainer';
 import { IProject } from '@/common/projects.type';
 
 interface HomePageProps {
-  categories: projectCategoryType[];
+  // categories: projectCategoryType[];
   params: {
     slug: string;
   };

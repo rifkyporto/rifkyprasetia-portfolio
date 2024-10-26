@@ -72,8 +72,8 @@ export default async function Home({ searchParams }: { searchParams: { category?
   );
 }
 
-export async function generateStaticParams() {
-  return {
-    next: { revalidate: 60 }, // Revalidate the page every 60 seconds
-  };
-}
+// export async function generateStaticParams() {
+//   return {
+//     next: { revalidate: 60 }, // Revalidate the page every 60 seconds
+//   };
+// }

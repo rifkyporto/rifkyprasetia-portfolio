@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { projectCategories } from "@/common";
 import { projectCategoryType } from "@/common/categories.type";
@@ -33,7 +33,8 @@ const Navbar = ({ categories }: NavbarType) => {
   
   // console.log({categories, router: router.query})
   return (
-    <nav className='my-10 flex flex-col gap-8'>
+    <Suspense>
+      <nav className='my-10 flex flex-col gap-8'>
       <div className='flex flex-col justify-center items-center gap-3'>
         <div className='flex justify-end w-[260px]'>
           <div className='flex gap-1'>
@@ -85,6 +86,8 @@ const Navbar = ({ categories }: NavbarType) => {
       </div>
       
     </nav>
+    </Suspense>
+    
   )
 }
 
