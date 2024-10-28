@@ -61,7 +61,7 @@ export default async function Home({ searchParams }: { searchParams: { category?
 
   return (
     <Layout categories={categories} >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 sm:gap-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
         {allProjects?.map((project) => {
           return (
             <ProjectCard project={project} />

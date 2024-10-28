@@ -55,10 +55,10 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
             </p>
           </div>
         )}
-        <div className="sm:hidden flex justify-start items-end absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent">
+        <div className="sm:hidden flex justify-start items-end absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/85 to-transparent">
           <p
             className={cn(
-              'text-white absolute m-5 text-lg font-extralight transition-all duration-500 flex items-center gap-2',
+              'text-white absolute mx-5 my-2 text-lg font-extralight transition-all duration-500 flex items-center gap-2',
             )}
           >
             {project?.title}
