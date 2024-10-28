@@ -31,7 +31,6 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
         style={{ aspectRatio: '16 / 9' }}
       >
         {/* <Icon icon="mdi:external-link" className='sm:hidden absolute right-3 top-3 z-[99999999] text-2xl' /> */}
-        <Icon icon="uiw:information-o" className='sm:hidden absolute right-3 top-3 z-[99999999] text-xl' />
         <img
           // src="https://static.wixstatic.com/media/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.jpg/v1/fit/w_972,h_548,q_90/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.webp"
           src={project?.cover_image_url}
@@ -44,7 +43,7 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
         />
         {isOverlayInspect && (
           <div className={cn(
-            'absolute w-full h-full z-10 top-0 flex items-end transition-all duration-500'
+            'sm:flex hidden absolute w-full h-full z-10 top-0 items-end transition-all duration-500'
           )}>
             <p
               className={cn(
@@ -56,6 +55,16 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
             </p>
           </div>
         )}
+        <div className="sm:hidden flex justify-start items-end absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent">
+          <p
+            className={cn(
+              'text-white absolute m-5 text-lg font-extralight transition-all duration-500 flex items-center gap-2',
+            )}
+          >
+            {project?.title}
+            <Icon icon="raphael:arrowright" />
+          </p>
+        </div>
       </div>
     </Link>
   )
