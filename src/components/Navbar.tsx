@@ -2,7 +2,7 @@
 
 import React, { Suspense } from 'react';
 import Link from 'next/link';
-import { projectCategories } from "@/common";
+// import { projectCategories } from "@/common";
 import { projectCategoryType } from "@/common/categories.type";
 import { useSearchParams, usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -18,7 +18,6 @@ const Navbar = ({ categories }: NavbarType) => {
   const pathname = usePathname()
   console.log({pathname})
 
-  let href = ""
 
   const getHref = (key: string) => {
     if (pathname !== '/') {
@@ -54,18 +53,29 @@ const Navbar = ({ categories }: NavbarType) => {
         </div>
       </div>
 
-      <div className='max-w-[70rem] lg:w-auto w-[90%] overflow-x-scroll mx-auto p-2'>
-        <div className='flex md:justify-center md:gap-9 gap-4 md:min-w-[60rem] min-w-[52rem] w-full overflow-scroll'>
+      <div className='max-w-[70rem] lg:w-auto w-[90%] overflow-x-scroll mx-auto p-2 scrollbar-thin scrollbar-webkit'>
+        <div
+          className='flex md:gap-9 gap-4 whitespace-nowrap flex-nowrap w-full'
+        >
+          <Link
+            href={`/`}
+            className={cn(
+              'text-[1.3rem] font-semibold text-[rgb(128,128,128)]',
+              pathname === `/` && 'text-[rgb(237,170,37)]',
+            )}
+          >
+            <>ALL</>
+          </Link>
           {categories?.map((category: projectCategoryType, index: number) => {
             return (
               <Link
                 key={index}
-                href={getHref(category.key)}
+                href={getHref(category.slug)}
                 // href={`${category.key === "all" ? "/" : `?category=${category.key}`}`}
                 className={cn(
                   'text-[1.3rem] font-semibold text-[rgb(128,128,128)] hover:text-[rgb(183,191,153)] transition-all duration-300',
-                  categoryParam === `${category.key}` && 'text-[rgb(237,170,37)]',
-                  pathname === `/` && category.key === "all" && !categoryParam && 'text-[rgb(237,170,37)]',
+                  categoryParam === `${category.slug}` && 'text-[rgb(237,170,37)]',
+                  pathname === `/` && category.slug === "all" && !categoryParam && 'text-[rgb(237,170,37)]',
                 )}
               >
                 <>{category.name.toUpperCase()}</>

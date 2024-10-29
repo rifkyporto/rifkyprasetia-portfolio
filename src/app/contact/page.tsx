@@ -1,19 +1,18 @@
 import React, { Suspense } from "react";
+// import { createClient } from "@/utils/supabase/server";
 // import Image from "next/image";
 import Layout from "@/components/Layout";
-import { projectCategories } from '@/common'; // Import the data
+// import { projectCategories } from '@/common'; // Import the data
 import { projectCategoryType } from '@/common/categories.type'; // Import the data
 
 // interface HomePageProps {
 //   categories: projectCategoryType[];
 // }
 
-const Contact: React.FC = () => {
-  const categories: projectCategoryType[] = projectCategories;
-
+const Contact: React.FC = async () => {
   return (
     <Suspense>
-      <Layout categories={categories} >
+      <Layout>
         <div className="h-[440px] lg:flex hidden">
           <div className="w-[50%] h-full flex flex-col justify-center items-end gap-3 text-right pr-[5rem]">
             <p className="text-2xl font-semibold">Rifky B. Prasetya</p>

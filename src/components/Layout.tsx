@@ -1,18 +1,23 @@
 import React from 'react'
+import { createClient } from "@/utils/supabase/server";
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { projectCategories } from '@/common'; // Import the data
-import { projectCategoryType } from '@/common/categories.type'; // Import the data
 
 type LayoutProps = {
   children: React.ReactNode;
-  categories: projectCategoryType[];
 };
 
-const Layout = ({ children, categories }: LayoutProps ) => {
+const Layout = async ({ children }: LayoutProps ) => {
+  const supabase = createClient();
+  const { data: dataCategory } = await supabase
+    .from('category')
+    .select(`
+      *
+    `)
+
   return (
     <div className='min-h-screen w-screen'>
-      <Navbar categories={categories} />
+      <Navbar categories={dataCategory!} />
       <div className='my-10'>
         {children}
       </div>

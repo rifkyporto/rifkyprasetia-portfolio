@@ -2,7 +2,7 @@ import React from 'react'
 import { createClient } from "@/utils/supabase/server";
 
 import Layout from '@/components/Layout';
-import { projectCategories } from '@/common'; // Import the data
+// import { projectCategories } from '@/common'; // Import the data
 import { projectCategoryType } from '@/common/categories.type'; // Import the data
 import FadeInContainer from '@/components/FadeInContainer';
 import { IProject } from '@/common/projects.type';
@@ -16,7 +16,7 @@ interface HomePageProps {
 
 const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
   const supabase = createClient();
-  const categories: projectCategoryType[] = projectCategories;
+  // const categories: projectCategoryType[] = projectCategories;
   const { slug } = params
 
   let query = supabase
@@ -34,9 +34,19 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
   const { data, error } = await query
   const project: IProject = data?.length ? data[0] : null;
   const showcase = project && project.showcase_project;
-  console.log({project, showcase})
+
+  const { data: pc } = await supabase
+    .from('project_categories') // Adjust this to your table name
+    .select(`
+      id,
+      category (name)
+    `)
+    // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
+    .eq('project_id', slug)
+
+  console.log({project, showcase, pc})
   return (
-    <Layout categories={categories} >
+    <Layout>
       <div className=''>
         <div
           className="relative w-full h-screen flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
@@ -57,7 +67,15 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
           <div className='flex flex-col gap-8'>
             <div>
               <p className='font-bold'>Project Type</p>
-              <p className='text-[0.9rem] font-extralight'>{project.category.name}</p>
+              <p className='text-[0.9rem] font-extralight'>
+                {pc?.map((category, idx) => {
+                  console.log({category})
+                  //@ts-ignore
+                  if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
+                  //@ts-ignore
+                  return category?.category?.name
+                })}
+              </p>
             </div>
             <div>
               <p className='font-bold'>Role</p>

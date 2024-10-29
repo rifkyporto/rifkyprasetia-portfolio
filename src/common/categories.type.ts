@@ -1,5 +1,4 @@
 export type projectCategoryType = {
-  id: number;
+  slug: string;
   name: string;
-  key: string;
 }

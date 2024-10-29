@@ -1,13 +1,11 @@
 import React from "react";
 import { createClient } from "@/utils/supabase/server";
 import Layout from "@/components/Layout";
-import { projectCategories } from '@/common';
+// import { projectCategories } from '@/common';
 import { projectCategoryType } from '@/common/categories.type';
 import ProjectCard from "@/components/ProjectCard";
 // import { useSearchParams } from "next/navigation";
-interface HomePageProps {
-  categories: projectCategoryType[];
-}
+
 
 export const dynamic = "force-dynamic";
 
@@ -57,10 +55,10 @@ export default async function Home({ searchParams }: { searchParams: { category?
   }
 
   // Fetch or import the data
-  const categories: projectCategoryType[] = projectCategories;
+  // const categories: projectCategoryType[] = projectCategories;
 
   return (
-    <Layout categories={categories} >
+    <Layout>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
         {allProjects?.map((project) => {
           return (
