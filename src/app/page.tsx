@@ -4,8 +4,9 @@ import Layout from "@/components/Layout";
 // import { projectCategories } from '@/common';
 import { projectCategoryType } from '@/common/categories.type';
 import ProjectCard from "@/components/ProjectCard";
+import { removeDuplicatesByKey } from "@/lib/utils";
+import { IProjectCategories } from "@/common/projects.type";
 // import { useSearchParams } from "next/navigation";
-
 
 export const dynamic = "force-dynamic";
 
@@ -40,27 +41,28 @@ export default async function Home({ searchParams }: { searchParams: { category?
 
   const { data: projects, error } = await query
 
-  console.log({projects})
-
   if (category) {
     projects?.sort((a, b) => a?.position - b?.position)
   }
 
-  const allProjects = projects?.map((project) => {
+  const allProjects: IProjectCategories[] = Object.values(
+    projects!.reduce((acc, item) => {
+        acc[item.project_id] = item;
+        return acc;
+    }, {}));
+
+  const projectShow = allProjects?.map((project) => {
     return project.projects;
   })
 
   if (!category) {
-    allProjects?.sort((a, b) => a?.position - b?.position)
+    projectShow?.sort((a, b) => a?.position - b?.position)
   }
-
-  // Fetch or import the data
-  // const categories: projectCategoryType[] = projectCategories;
 
   return (
     <Layout>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
-        {allProjects?.map((project) => {
+        {projectShow?.map((project) => {
           return (
             <ProjectCard project={project} />
           )

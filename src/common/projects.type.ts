@@ -13,7 +13,19 @@ export interface IProject {
   user_id: string;
   created_at: string;
   cover_image_url: string;
+  position: number;
 
   category: ICategory;
   showcase_project: IShowcaseProject[];
+}
+
+export interface IProjectCategories {
+  id: string,
+  category_id: string,
+  project_id: string,
+  position: number,
+  created_at: string,
+  updated_at: string,
+  user_id: string,
+  projects: IProject
 }

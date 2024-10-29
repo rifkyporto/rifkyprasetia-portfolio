@@ -66,7 +66,7 @@ const Navbar = ({ categories }: NavbarType) => {
           >
             <>ALL</>
           </Link>
-          {categories?.map((category: projectCategoryType, index: number) => {
+          {categories?.sort((a, b) => a.position! - b.position!)?.map((category: projectCategoryType, index: number) => {
             return (
               <Link
                 key={index}
