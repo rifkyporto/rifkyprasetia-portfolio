@@ -18,7 +18,7 @@ const Layout = async ({ children }: LayoutProps ) => {
   return (
     <div className='min-h-screen w-screen'>
       <Navbar categories={dataCategory!} />
-      <div className='my-10'>
+      <div className='mb-10 mt-2'>
         {children}
       </div>
       <Footer />

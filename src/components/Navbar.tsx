@@ -33,7 +33,7 @@ const Navbar = ({ categories }: NavbarType) => {
   // console.log({categories, router: router.query})
   return (
     <Suspense>
-      <nav className='my-10 flex flex-col gap-8'>
+      <nav className='mt-10 flex flex-col gap-8'>
       <div className='flex flex-col justify-center items-center gap-3'>
         <div className='flex justify-end w-[260px]'>
           <div className='flex gap-1'>
