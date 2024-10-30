@@ -15,7 +15,7 @@ const Contact: React.FC = async () => {
       <Layout>
         <div className="h-[440px] lg:flex hidden">
           <div className="w-[50%] h-full flex flex-col justify-center items-end gap-3 text-right pr-[5rem]">
-            <p className="text-2xl font-semibold">Rifky B. Prasetya</p>
+            <p className="text-2xl font-semibold">Rifky B. Prasetia</p>
             <div className="flex flex-col gap-1">
               <p>tararifky@live.com</p>
               <p>+62 895-0279-1116</p>
