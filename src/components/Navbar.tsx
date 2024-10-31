@@ -1,22 +1,23 @@
-"use client";
-
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 // import { projectCategories } from "@/common";
 import { projectCategoryType } from "@/common/categories.type";
-import { useSearchParams, usePathname } from 'next/navigation';
+// import { useSearchParams, usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 type NavbarType = {
-  categories: projectCategoryType[]
+  categories: projectCategoryType[];
+  searchParams: { category?: string };
+  pathname: string;
 }
 
-const Navbar = ({ categories }: NavbarType) => {
-  const searchParams = useSearchParams();
-  const categoryParam = searchParams.get('category');
+const Navbar = ({ categories, searchParams, pathname }: NavbarType) => {
+  // const searchParams = useSearchParams();
+  // const categoryParam = searchParams.get('category');
+  const categoryParam = searchParams?.category || null
 
-  const pathname = usePathname()
-  console.log({pathname})
+
+  // const pathname = usePathname()
 
 
   const getHref = (key: string) => {
@@ -29,8 +30,6 @@ const Navbar = ({ categories }: NavbarType) => {
     }
   }
 
-  
-  // console.log({categories, router: router.query})
   return (
     <Suspense>
       <nav className='mt-10 flex flex-col gap-8'>
@@ -63,7 +62,7 @@ const Navbar = ({ categories }: NavbarType) => {
               href={`/`}
               className={cn(
                 'text-[1.3rem] font-semibold text-[rgb(128,128,128)]',
-                pathname === `/` && 'text-[rgb(237,170,37)]',
+                pathname === `/` && !categoryParam && 'text-[rgb(237,170,37)]',
               )}
             >
               <>ALL</>

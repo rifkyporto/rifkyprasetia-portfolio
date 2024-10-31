@@ -1,9 +1,6 @@
 import React from 'react'
 import { createClient } from "@/utils/supabase/server";
-
 import Layout from '@/components/Layout';
-// import { projectCategories } from '@/common'; // Import the data
-import { projectCategoryType } from '@/common/categories.type'; // Import the data
 import FadeInContainer from '@/components/FadeInContainer';
 import { IProject } from '@/common/projects.type';
 
@@ -20,7 +17,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
   const { slug } = params
 
   let query = supabase
-    .from('projects') // Adjust this to your table name
+    .from('projects')
     .select(`
       *,
       category (name),
@@ -28,15 +25,13 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
     `)
     // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
     .eq('id', slug)
-    // .innerJoin('users', 'projects.user_id', 'users.id');  // Joining the `users` table
-    // .ilike("category_id", `%${typeQuery}%`)
 
   const { data, error } = await query
   const project: IProject = data?.length ? data[0] : null;
   const showcase = project && project.showcase_project;
 
   const { data: pc } = await supabase
-    .from('project_categories') // Adjust this to your table name
+    .from('project_categories')
     .select(`
       id,
       category (name)
@@ -46,7 +41,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
 
   console.log({project, showcase, pc})
   return (
-    <Layout>
+    <Layout pathname='/projects'>
       <div className=''>
         <div
           className="relative w-full h-screen flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"

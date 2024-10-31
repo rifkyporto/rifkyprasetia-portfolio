@@ -36,18 +36,18 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
           src={project?.cover_image_url}
           alt={project?.title + " project"}
           // fill
-          className={`absolute inset-0 dark:invert ${isOverlayInspect && "grayscale brightness-75 contrast-100"} transition-all ease-out duration-400 w-[100%] h-full object-cover`}
+          className={`absolute inset-0 dark:invert ${isOverlayInspect && "grayscale brightness-75 contrast-100"} transition-all ease-out duration-700 w-[100%] h-full object-cover`}
           // width={320}
           // height={100}
           // priority
         />
         {isOverlayInspect && (
           <div className={cn(
-            'sm:flex hidden absolute w-full h-full z-10 top-0 items-end transition-all duration-500'
+            'sm:flex hidden absolute w-full h-full z-10 top-0 items-end transition-all duration-700'
           )}>
             <p
               className={cn(
-                'text-white absolute m-5 text-2xl font-semibold transition-all duration-500',
+                'text-white absolute m-5 text-2xl font-semibold transition-all duration-700',
                 isOverlayInspect ? "block" : "hidden"
               )}
             >
