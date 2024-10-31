@@ -23,7 +23,7 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
   }
 
   return (
-    <Link href={`/projects/${project?.id}`} className={cn('relative w-full', className)}>
+    <Link href={`/projects/${project?.id}`} className={cn('relative w-full', className)} prefetch={false}>
       <div
         className='relative z-0 cursor-pointer w-full pb-[56.25%]'
         onMouseEnter={handleOnMouseEnter}

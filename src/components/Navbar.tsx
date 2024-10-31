@@ -33,7 +33,7 @@ const Navbar = ({ categories, searchParams, pathname }: NavbarType) => {
   return (
     <Suspense>
       <nav className='mt-10 flex flex-col gap-8'>
-        <Link href={"/"}>
+        <Link href={"/"} prefetch={false}>
           <div className='flex flex-col justify-center items-center gap-3'>
             <div className='flex justify-end w-[260px]'>
               <div className='flex gap-1'>
@@ -60,6 +60,7 @@ const Navbar = ({ categories, searchParams, pathname }: NavbarType) => {
           >
             <Link
               href={`/`}
+              prefetch={false}
               className={cn(
                 'text-[1.3rem] font-semibold text-[rgb(128,128,128)]',
                 pathname === `/` && !categoryParam && 'text-[rgb(237,170,37)]',
@@ -86,6 +87,7 @@ const Navbar = ({ categories, searchParams, pathname }: NavbarType) => {
             <Link
               key={categories.length}
               href={`/contact`}
+              prefetch={false}
               className={cn(
                 'text-[1.3rem] font-semibold text-[rgb(128,128,128)]',
                 pathname === `/contact` && 'text-[rgb(237,170,37)]',
