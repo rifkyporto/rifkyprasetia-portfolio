@@ -37,7 +37,7 @@ const Navbar = ({ categories, pathname, category }: NavbarType) => {
           </div>
         </Link>
 
-        <div className='max-w-[70rem] lg:w-auto w-[90%] overflow-x-scroll mx-auto p-2 scrollbar-thin scrollbar-webkit'>
+        <div className='max-w-[70rem] lg:w-auto w-[90%] overflow-x-scroll mx-auto p-2 sm:scrollbar-hide scrollbar-thin scrollbar-webkit'>
           <div
             className='flex md:gap-9 gap-4 whitespace-nowrap flex-nowrap w-full'
           >
