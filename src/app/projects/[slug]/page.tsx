@@ -46,7 +46,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
         <div
           className="relative w-full h-screen flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
           style={{
-            backgroundImage: `url("${project?.cover_image_url}")`
+            backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`
           }}
         >
           <div className='overflow-hidden h-full relative lg:w-full w-[95%] max-w-[64rem] mx-auto z-10'>

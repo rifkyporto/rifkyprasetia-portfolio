@@ -13,6 +13,7 @@ export interface IProject {
   user_id: string;
   created_at: string;
   cover_image_url: string;
+  banner_url: string;
   position: number;
 
   category: ICategory;
