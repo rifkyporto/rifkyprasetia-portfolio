@@ -1,5 +1,6 @@
 import React from 'react'
-import { createClient } from "@/utils/supabase/server";
+// import { createClient } from "@/utils/supabase/server";
+import supabase from '@/utils/supabase';
 import Layout from '@/components/Layout';
 import FadeInContainer from '@/components/FadeInContainer';
 import { IProject } from '@/common/projects.type';
@@ -19,7 +20,6 @@ interface HomePageProps {
 }
 
 const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
-  const supabase = createClient();
   // const categories: projectCategoryType[] = projectCategories;
   const { slug } = params
 

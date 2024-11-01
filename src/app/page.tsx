@@ -1,5 +1,6 @@
 import React from "react";
-import { createClient } from "@/utils/supabase/server";
+// import { createClient } from "@/utils/supabase/server";
+import supabase from "@/utils/supabase";
 import Layout from "@/components/Layout";
 // import { projectCategories } from '@/common';
 import { projectCategoryType } from '@/common/categories.type';
@@ -10,7 +11,7 @@ import { IProjectCategories } from "@/common/projects.type";
 export const dynamic = 'force-static';
 
 export default async function Home() {
-  const supabase = createClient();
+  // const supabase = createClient();
 
   const { data: projects } = await supabase
     .from('project_categories')

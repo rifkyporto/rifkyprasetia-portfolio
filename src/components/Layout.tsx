@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
-import { createClient } from "@/utils/supabase/server";
+// import { createClient } from "@/utils/supabase/server";
+import supabase from '@/utils/supabase';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import LoadingComps from './loading-comps';
@@ -11,7 +12,7 @@ type LayoutProps = {
 };
 
 const Layout = async ({ children, pathname, category }: LayoutProps ) => {
-  const supabase = createClient();
+  // const supabase = createClient();
   const { data: dataCategory } = await supabase
     .from('category')
     .select(`

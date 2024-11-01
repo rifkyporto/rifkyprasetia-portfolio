@@ -1,11 +1,12 @@
 import React from 'react'
-import { createClient } from "@/utils/supabase/server";
+// import { createClient } from "@/utils/supabase/server";
+import supabase from '@/utils/supabase';
 import { Icon } from '@iconify/react';
 import { SOCIALLIST } from '@/lib/configs';
 import { cn } from '@/lib/utils';
 
 const Footer: React.FC = async () => {
-  const supabase = createClient();
+  // const supabase = createClient();
   const { data } = await supabase
     .from('social')
     .select(`
