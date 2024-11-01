@@ -7,10 +7,10 @@ import LoadingComps from './loading-comps';
 type LayoutProps = {
   children: React.ReactNode;
   pathname: string;
-  searchParams?: { category?: string };
+  category?: string;
 };
 
-const Layout = async ({ children, pathname, searchParams }: LayoutProps ) => {
+const Layout = async ({ children, pathname, category }: LayoutProps ) => {
   const supabase = createClient();
   const { data: dataCategory } = await supabase
     .from('category')
@@ -20,7 +20,7 @@ const Layout = async ({ children, pathname, searchParams }: LayoutProps ) => {
 
   return (
     <div className='min-h-screen w-screen'>
-      <Navbar categories={dataCategory!} pathname={pathname} searchParams={searchParams!} />
+      <Navbar categories={dataCategory!} pathname={pathname} category={category!} />
       <Suspense
         fallback={(<LoadingComps />)}
       >

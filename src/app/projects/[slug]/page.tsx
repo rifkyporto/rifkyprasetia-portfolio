@@ -4,6 +4,13 @@ import Layout from '@/components/Layout';
 import FadeInContainer from '@/components/FadeInContainer';
 import { IProject } from '@/common/projects.type';
 
+export const revalidate = 1000;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  return []
+}
+
 interface HomePageProps {
   // categories: projectCategoryType[];
   params: {

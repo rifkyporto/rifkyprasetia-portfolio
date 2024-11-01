@@ -2,38 +2,21 @@ import React, { Suspense } from 'react';
 import Link from 'next/link';
 // import { projectCategories } from "@/common";
 import { projectCategoryType } from "@/common/categories.type";
-// import { useSearchParams, usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 type NavbarType = {
   categories: projectCategoryType[];
-  searchParams: { category?: string };
   pathname: string;
+  category?: string
 }
 
-const Navbar = ({ categories, searchParams, pathname }: NavbarType) => {
-  // const searchParams = useSearchParams();
-  // const categoryParam = searchParams.get('category');
-  const categoryParam = searchParams?.category || null
-
-
-  // const pathname = usePathname()
-
-
-  const getHref = (key: string) => {
-    if (pathname !== '/') {
-      if (key === 'all') return '/'
-      else return `/?category=${key}`
-    } else {
-      if (key === 'all') return '/'
-      else return `?category=${key}`
-    }
-  }
+const Navbar = ({ categories, pathname, category }: NavbarType) => {
+  const categoryParam = category || null
 
   return (
     <Suspense>
       <nav className='mt-10 flex flex-col gap-8'>
-        <Link href={"/"} prefetch={false}>
+        <Link href={"/"}>
           <div className='flex flex-col justify-center items-center gap-3'>
             <div className='flex justify-end w-[260px]'>
               <div className='flex gap-1'>
@@ -60,7 +43,6 @@ const Navbar = ({ categories, searchParams, pathname }: NavbarType) => {
           >
             <Link
               href={`/`}
-              prefetch={false}
               className={cn(
                 'text-[1.3rem] font-semibold text-[rgb(128,128,128)]',
                 pathname === `/` && !categoryParam && 'text-[rgb(237,170,37)]',
@@ -68,26 +50,25 @@ const Navbar = ({ categories, searchParams, pathname }: NavbarType) => {
             >
               <>ALL</>
             </Link>
-            {categories?.sort((a, b) => a.position! - b.position!)?.map((category: projectCategoryType, index: number) => {
+            {categories?.sort((a, b) => a.position! - b.position!)?.map((categoryItem: projectCategoryType, index: number) => {
               return (
                 <Link
                   key={index}
-                  href={getHref(category.slug)}
+                  href={`/${categoryItem?.slug}`}
                   // href={`${category.key === "all" ? "/" : `?category=${category.key}`}`}
                   className={cn(
                     'text-[1.3rem] font-semibold text-[rgb(128,128,128)] hover:text-[rgb(183,191,153)] transition-all duration-300',
-                    categoryParam === `${category.slug}` && 'text-[rgb(237,170,37)]',
-                    pathname === `/` && category.slug === "all" && !categoryParam && 'text-[rgb(237,170,37)]',
+                    categoryParam === `${categoryItem.slug}` && 'text-[rgb(237,170,37)]',
+                    pathname === `/` && categoryItem.slug === "all" && !categoryParam && 'text-[rgb(237,170,37)]',
                   )}
                 >
-                  <>{category.name.toUpperCase()}</>
+                  <>{categoryItem.name.toUpperCase()}</>
                 </Link>
               )
             })}
             <Link
               key={categories.length}
               href={`/contact`}
-              prefetch={false}
               className={cn(
                 'text-[1.3rem] font-semibold text-[rgb(128,128,128)]',
                 pathname === `/contact` && 'text-[rgb(237,170,37)]',

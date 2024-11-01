@@ -1,11 +1,12 @@
 import React, { Suspense } from "react";
 import Layout from "@/components/Layout";
 
+export const dynamic = 'force-static';
 
-const Contact = async ({ searchParams }: { searchParams: { category?: string } }) => {
+const Contact = async () => {
   return (
     <Suspense>
-      <Layout pathname="/contact" searchParams={searchParams}>
+      <Layout pathname="/contact">
         <div className="h-[440px] lg:flex hidden">
           <div className="w-[50%] h-full flex flex-col justify-center items-end gap-3 text-right pr-[5rem]">
             <p className="text-2xl font-semibold">Rifky B. Prasetia</p>
