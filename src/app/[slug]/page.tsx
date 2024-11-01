@@ -11,40 +11,35 @@ export const revalidate = 1000;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  // const supabase = createClient();
-  const { data: dataCategory } = await supabase
+  const { data: categories } = await supabase
     .from('category')
-    .select(`
-      *
-    `)
+    .select('*');
 
-  return dataCategory?.map((slug: projectCategoryType) => ({
-    slug: slug?.slug,
-  }));
-  // []
+  return categories?.map((category) => ({
+    slug: category.slug || category.id.toString(),
+  })) ?? [];
 }
 
 export default async function HomeSlug({ params }: { params: { slug: string } }) {
-  // const supabase = createClient();
+  const { data: categoryData } = await supabase
+    .from('category')
+    .select('slug')
+    .eq('slug', params.slug)
+    .single();
 
-  const category = params.slug
-  console.log({category})
-  let query = supabase
+  const categoryId = categoryData?.slug;
+
+  const category = categoryData?.slug
+
+  const { data: projects } = await supabase
     .from('project_categories')
     .select(`
       *,
       projects (*)
     `)
+    .eq('category_id', categoryId)
 
-  if (category) {
-    query = query.eq('category_id', category);
-  }
-
-  const { data: projects, error } = await query
-
-  if (category) {
-    projects?.sort((a, b) => a?.position - b?.position)
-  }
+  projects?.sort((a, b) => a?.position - b?.position)
 
   const allProjects: IProjectCategories[] = Object.values(
     projects!.reduce((acc, item) => {
