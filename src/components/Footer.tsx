@@ -55,7 +55,7 @@ const Footer: React.FC = async () => {
       </div>
       
       <div className='flex flex-col justify-center items-center gap-3'>
-        <p className='text-sm font-thin text-white text-center'>&copy;2024 Rifky B. Prasetia</p>
+        <p className='text-sm font-thin text-white text-center'>&copy;{profile?.[0]?.copyright}</p>
         <div className='flex gap-1'>
           <div className='bg-[#C44302] rounded-full w-[15px] h-[15px]'></div>
           <div className='bg-[#EDAA25] rounded-full w-[15px] h-[15px]'></div>
