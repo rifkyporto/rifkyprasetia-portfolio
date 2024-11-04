@@ -6,25 +6,30 @@ import { SOCIALLIST } from '@/lib/configs';
 import { cn } from '@/lib/utils';
 
 const Footer: React.FC = async () => {
-  // const supabase = createClient();
   const { data } = await supabase
     .from('social')
     .select(`
       *
     `)
+  const { data: profile } = await supabase
+    .from('profile')
+    .select(`
+      *
+    `)
 
-    return (
+  return (
     <footer className='flex flex-col gap-12 mb-10'>
       <div className='flex justify-center md:flex-row flex-col md:gap-20 gap-6 md:mx-auto mx-10'>
         <div className='flex flex-col gap-4 w-[15rem]'>
           <p className='text-2xl font-semibold text-[#C44302]'>About</p>
           <div>
-            <p className='font-thin'>Cinematographer, Colorist, and <br/> Editor Based in Jakarta</p>
+            {/* <p className='font-thin'>Cinematographer, Colorist, and <br/> Editor Based in Jakarta</p> */}
+            <p className='font-thin'>{profile?.[0]?.about}</p>
           </div>
         </div>
         <div className='flex flex-col gap-4'>
           <p className='text-2xl font-semibold text-[#EDAA25]'>Socials</p>
-          <div className='flex gap-1 items-center justify-center'>
+          <div className='flex gap-1 items-center md:justify-center'>
             {data?.map((social) => {
               const socialData = SOCIALLIST?.find((socialList) => socialList.socialKey === social.key)
               return (
@@ -43,8 +48,8 @@ const Footer: React.FC = async () => {
         <div className='flex flex-col gap-4 w-[15rem]'>
           <p className='text-2xl font-semibold text-[#B7BF99]'>Contact</p>
           <div className='font-thin'>
-            <p>tararifky@live.com</p>
-            <p>+62 895-0279-1116</p>
+            <p>{profile?.[0]?.email}</p>
+            <p>{profile?.[0]?.mobile}</p>
           </div>
         </div>
       </div>
