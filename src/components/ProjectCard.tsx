@@ -63,7 +63,7 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
           >
             {project?.title}
           </p>
-          <Icon icon="raphael:arrowright" className='mx-5 my-2' />
+          <Icon icon="weui:arrow-outlined" className='mx-5 my-2 text-lg' />
         </div>
       </div>
     </Link>
