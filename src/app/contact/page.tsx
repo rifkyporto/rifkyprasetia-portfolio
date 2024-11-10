@@ -23,7 +23,7 @@ const Contact = async () => {
             <div className="flex flex-col gap-1">
               <p>{profileData?.email}</p>
               <p>{profileData?.mobile}</p>
-              <p>@rifkyprasetya</p>
+              <p>@rifkyprasetia</p>
             </div>
           </div>
           <img
