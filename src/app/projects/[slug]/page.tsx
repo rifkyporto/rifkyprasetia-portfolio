@@ -2,6 +2,8 @@ import React from 'react'
 // import { createClient } from "@/utils/supabase/server";
 import supabase from '@/utils/supabase';
 import Layout from '@/components/Layout';
+import { Icon } from '@iconify/react';
+import { Button } from '@/components/ui/button';
 import FadeInContainer from '@/components/FadeInContainer';
 import { IProject } from '@/common/projects.type';
 
@@ -50,57 +52,101 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
   return (
     <Layout pathname='/projects'>
       <div className=''>
-        <div
-          className="relative w-full h-screen flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
-          style={{
-            backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`
-          }}
-        >
-          <div className='overflow-hidden h-full relative lg:w-full w-[95%] max-w-[64rem] mx-auto z-10'>
-            <FadeInContainer>
-              <div className="md:w-[40rem] absolute bottom-[20%] z-10 text-center text-white p-4 flex items-end">
-                <h1 className="md:text-6xl text-5xl font-bold text-start mb-2 leading-[5rem]">{project?.title}</h1>
+        {/* <div className='relative w-full mb-32'> */}
+          <div
+            className="relative w-full h-screen flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
+            style={{
+              backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`
+            }}
+          >
+            <div className='overflow-hidden h-full relative lg:w-full w-[95%] max-w-[64rem] mx-auto z-10'>
+              <FadeInContainer>
+                <div className="md:w-[40rem] absolute bottom-[20%] z-10 text-center text-white p-4 flex items-end">
+                  <h1 className="md:text-6xl text-5xl font-bold text-start mb-2 leading-[5rem]">{project?.title}</h1>
+                </div>
+                <div className='absolute right-10 bottom-[22%]'>
+                <Button variant={'secondary'} className='bg-white text-black'>
+                  <Icon icon="zondicons:play" className='text-[1.5rem]' />
+                  Watch
+                </Button>
               </div>
-            </FadeInContainer>
+              </FadeInContainer>
+              
+
+              <div className='absolute -bottom-36 left-4 flex gap-[10rem] my-20 max-w-[62rem] lg:w-auto w-[90%] mx-auto z-50'>
+                <div className='flex flex-col gap-8'>
+                  <div>
+                    <p className='font-bold'>Project Type</p>
+                    <p className='text-[0.9rem] font-extralight'>
+                      {pc?.map((category, idx) => {
+                        console.log({category})
+                        //@ts-ignore
+                        if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
+                        //@ts-ignore
+                        return category?.category?.name
+                      })}
+                    </p>
+                  </div>
+                  <div>
+                    <p className='font-bold'>Role</p>
+                    <p className='text-[0.9rem] font-extralight'>{project?.role}</p>
+                  </div>
+                  <div>
+                    <p className='font-bold'>Client</p>
+                    <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
+                  </div>
+                </div>
+                <div className='flex flex-col gap-8'>
+                  <div>
+                    <p className='font-bold'>Date</p>
+                    <p className='text-[0.9rem] font-extralight'>{project?.date_month_project}</p>
+                  </div>
+                  <div>
+                    <p className='font-bold'>Watch</p>
+                    <p className='text-[0.9rem] font-extralight underline'><a href={project?.link_teaser} target='_blank'>Click here</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-        </div>
-        <div className='flex gap-[10rem] my-20 max-w-[62rem] lg:w-auto w-[90%] mx-auto'>
-          <div className='flex flex-col gap-8'>
-            <div>
-              <p className='font-bold'>Project Type</p>
-              <p className='text-[0.9rem] font-extralight'>
-                {pc?.map((category, idx) => {
-                  console.log({category})
-                  //@ts-ignore
-                  if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
-                  //@ts-ignore
-                  return category?.category?.name
-                })}
-              </p>
+          {/* <div className='absolute bottom-0 flex gap-[10rem] mb-52 max-w-[62rem] lg:w-auto w-[90%] mx-auto'>
+            <div className='flex flex-col gap-8'>
+              <div>
+                <p className='font-bold'>Project Type</p>
+                <p className='text-[0.9rem] font-extralight'>
+                  {pc?.map((category, idx) => {
+                    console.log({category})
+                    //@ts-ignore
+                    if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
+                    //@ts-ignore
+                    return category?.category?.name
+                  })}
+                </p>
+              </div>
+              <div>
+                <p className='font-bold'>Role</p>
+                <p className='text-[0.9rem] font-extralight'>{project?.role}</p>
+              </div>
+              <div>
+                <p className='font-bold'>Client</p>
+                <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
+              </div>
             </div>
-            <div>
-              <p className='font-bold'>Role</p>
-              <p className='text-[0.9rem] font-extralight'>{project?.role}</p>
+            <div className='flex flex-col gap-8'>
+              <div>
+                <p className='font-bold'>Date</p>
+                <p className='text-[0.9rem] font-extralight'>{project?.date_month_project}</p>
+              </div>
+              <div>
+                <p className='font-bold'>Watch</p>
+                <p className='text-[0.9rem] font-extralight underline'><a href={project?.link_teaser} target='_blank'>Click here</a></p>
+              </div>
             </div>
-            <div>
-              <p className='font-bold'>Client</p>
-              <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-            </div>
-          </div>
-          <div className='flex flex-col gap-8'>
-            <div>
-              <p className='font-bold'>Date</p>
-              <p className='text-[0.9rem] font-extralight'>{project?.date_month_project}</p>
-            </div>
-            <div>
-              <p className='font-bold'>Watch</p>
-              <p className='text-[0.9rem] font-extralight underline'><a href={project?.link_teaser} target='_blank'>Click here</a></p>
-            </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
-        <div className='flex flex-col gap-4 max-w-[62rem] lg:w-auto w-[90%] mx-auto'>
+        <div className='flex flex-col gap-4 max-w-[62rem] lg:w-auto w-[90%] mx-auto mt-20'>
           {showcase?.length ? showcase?.map((show) => {
             if (!show.is_video) {
               return (

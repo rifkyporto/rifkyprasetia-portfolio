@@ -34,7 +34,7 @@ export default async function Home() {
 
   return (
     <Layout pathname="/">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[8px]">
         {projectShow?.map((project) => {
           return (
             <ProjectCard project={project} />
