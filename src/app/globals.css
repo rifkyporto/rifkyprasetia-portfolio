@@ -27,6 +27,11 @@ p {
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .background-image::after {
   content: '';
   position: absolute;

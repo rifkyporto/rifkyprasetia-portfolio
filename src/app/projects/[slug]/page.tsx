@@ -65,7 +65,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                   <div className="md:w-[40rem] bottom-[20%] z-10 text-center text-white p-4 flex items-end">
                     <h1 className="md:text-6xl text-5xl font-bold text-start mb-2 leading-[5rem]">{project?.title}</h1>
                   </div>
-                  <div className='relative right-10 md:block hidden'>
+                  <div className='relative right-10 md:block hidden animate-[fadeIn_1.5s_ease-in_1s_forwards] opacity-0'>
                     <a href={project?.link_teaser} target='_blank'>
                       <Button variant={'secondary'} className='bg-white text-black'>
                         <Icon icon="zondicons:play" className='text-[1.5rem]' />
