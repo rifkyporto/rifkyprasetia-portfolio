@@ -54,7 +54,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       <div className=''>
         {/* <div className='relative w-full mb-32'> */}
           <div
-            className="relative w-full h-screen min-h-[50rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
+            className="relative w-full h-screen min-h-[50rem] max-h-[65rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
             style={{
               backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`
             }}
@@ -75,88 +75,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                   </div>
                 </div>
               </FadeInContainer>
-              {/* <div className='absolute -bottom-36 left-4 my-20 max-w-[62rem] lg:w-auto w-[90%] mx-auto z-50 mt-[10rem] h-auto'>
-                <div className='flex gap-[10rem]'>
-                  <div className='flex flex-col gap-8'>
-                    <div>
-                      <p className='font-bold'>Project Type</p>
-                      <p className='text-[0.9rem] font-extralight'>
-                        {pc?.map((category, idx) => {
-                          console.log({category})
-                          //@ts-ignore
-                          if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
-                          //@ts-ignore
-                          return category?.category?.name
-                        })}
-                      </p>
-                    </div>
-                    <div>
-                      <p className='font-bold'>Role</p>
-                      <p className='text-[0.9rem] font-extralight'>{project?.role}</p>
-                    </div>
-                    <div>
-                      <p className='font-bold'>Client</p>
-                      <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-                    </div>
-                  </div>
-                  <div className='flex flex-col gap-8 z-10'>
-                    <div>
-                      <p className='font-bold'>Date</p>
-                      <p className='text-[0.9rem] font-extralight'>{project?.date_month_project}</p>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-              
             </div>
-            {/* <div className='absolute top-[10rem] left-4 my-20 max-w-[62rem] lg:w-auto w-[90%] mx-auto z-50 mt-[10rem] h-auto'>
-              <div className='flex gap-[10rem]'>
-                <div className='flex flex-col gap-8'>
-                  <div>
-                    <p className='font-bold'>Project Type</p>
-                    <p className='text-[0.9rem] font-extralight'>
-                      {pc?.map((category, idx) => {
-                        console.log({category})
-                        //@ts-ignore
-                        if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
-                        //@ts-ignore
-                        return category?.category?.name
-                      })}
-                    </p>
-                  </div>
-                  <div>
-                    <p className='font-bold'>Role</p>
-                    <p className='text-[0.9rem] font-extralight'>{project?.role}</p>
-                  </div>
-                  <div>
-                    <p className='font-bold'>Client</p>
-                    <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-                  </div>
-                  <div>
-                    <p className='font-bold'>Client</p>
-                    <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-                  </div>
-                  <div>
-                    <p className='font-bold'>Client</p>
-                    <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-                  </div>
-                  <div>
-                    <p className='font-bold'>Client</p>
-                    <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-                  </div>
-                  <div>
-                    <p className='font-bold'>Client</p>
-                    <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-                  </div>
-                </div>
-                <div className='flex flex-col gap-8 z-10'>
-                  <div>
-                    <p className='font-bold'>Date</p>
-                    <p className='text-[0.9rem] font-extralight'>{project?.date_month_project}</p>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
           
           {/* <div className='absolute bottom-0 flex gap-[10rem] mb-52 max-w-[62rem] lg:w-auto w-[90%] mx-auto'>
