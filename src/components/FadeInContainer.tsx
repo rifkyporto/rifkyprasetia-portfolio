@@ -18,9 +18,9 @@ const FadeInContainer = ({ children }: LayoutProps) => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden h-full w-full">
+    <div className=" overflow-hidden h-full w-full">
       <div
-        className={`absolute inset-0 transform transition-all duration-1000 ease-out ${
+        className={` inset-0 transform transition-all duration-1000 ease-out ${
           isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
         }`}
         style={{ zIndex: 10 }}

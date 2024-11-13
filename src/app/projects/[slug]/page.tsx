@@ -54,18 +54,22 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       <div className=''>
         {/* <div className='relative w-full mb-32'> */}
           <div
-            className="relative w-full h-screen min-h-[50rem] max-h-[65rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
+            className="relative w-full h-screen min-h-[50rem] max-h-[75rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
             style={{
               backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`
             }}
           >
             <div className='overflow-hidden h-full relative lg:w-full w-[95%] max-w-[64rem] mx-auto z-10'>
-              <FadeInContainer>
+              <div className='relative overflow-hidden h-full w-full'>
+              <div className='absolute inset-0'>
+
                 <div className='absolute flex w-full justify-between items-center bottom-[20%]'>
+                  <FadeInContainer>
                   <div className="md:w-[40rem] bottom-[20%] z-10 text-center text-white p-4 flex items-end">
                     <h1 className="md:text-6xl text-5xl font-bold text-start mb-2 leading-[5rem]">{project?.title}</h1>
                   </div>
-                  <div className='relative right-10 md:block hidden animate-[fadeIn_1.5s_ease-in_1s_forwards] opacity-0'>
+                  </FadeInContainer>
+                  <div className='relative right-10 md:block hidden animate-[fadeIn_2s_ease-in_forwards] opacity-0'>
                     <a href={project?.link_teaser} target='_blank'>
                       <Button variant={'secondary'} className='bg-white text-black'>
                         <Icon icon="zondicons:play" className='text-[1.5rem]' />
@@ -74,7 +78,10 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                     </a>
                   </div>
                 </div>
-              </FadeInContainer>
+              </div>
+              </div>
+
+
             </div>
           </div>
           
