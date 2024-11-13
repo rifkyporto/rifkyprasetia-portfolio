@@ -37,6 +37,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
 
   const { data, error } = await query
   const project: IProject = data?.length ? data[0] : null;
+  const additionalFields = project?.additional_fields ? JSON.parse(project?.additional_fields) : []
   const showcase = project && project.showcase_project;
 
   const { data: pc } = await supabase
@@ -138,6 +139,18 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
               <p className='font-bold'>Client</p>
               <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
             </div>
+            {additionalFields?.map((fields: { id: string, value: string, label: string }, idx: number) => {
+              if (idx % 2 !== 0) {
+                return ""
+              }
+
+              return (
+                <div>
+                  <p className='font-bold'>{fields?.label}</p>
+                  <p className='text-[0.9rem] font-extralight'>{fields?.value}</p>
+                </div>
+              )
+            })}
           </div>
           <div className='flex flex-col gap-8'>
             <div>
@@ -148,6 +161,18 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
               <p className='font-bold'>Role</p>
               <p className='text-[0.9rem] font-extralight'>{project?.role}</p>
             </div>
+            {additionalFields?.map((fields: { id: string, value: string, label: string }, idx: number) => {
+              if (idx % 2 === 0) {
+                return ""
+              }
+
+              return (
+                <div>
+                  <p className='font-bold'>{fields?.label}</p>
+                  <p className='text-[0.9rem] font-extralight'>{fields?.value}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
         <div className='w-[91%] mx-auto max-w-[62rem] md:hidden flex justify-end -translate-y-20'>

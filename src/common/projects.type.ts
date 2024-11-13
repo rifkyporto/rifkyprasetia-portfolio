@@ -15,6 +15,7 @@ export interface IProject {
   cover_image_url: string;
   banner_url: string;
   position: number;
+  additional_fields: string;
 
   category: ICategory;
   showcase_project: IShowcaseProject[];
