@@ -6,6 +6,7 @@ export interface IProject {
   updated_at: string;
   title: string;
   category_id: string;
+  category_label: string;
   role: string;
   client_name: string;
   date_month_project: string;

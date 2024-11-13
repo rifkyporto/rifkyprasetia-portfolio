@@ -126,13 +126,17 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
             <div>
               <p className='font-bold'>Project Type</p>
               <p className='text-[0.9rem] font-extralight'>
-                {pc?.map((category, idx) => {
-                  console.log({category})
-                  //@ts-ignore
-                  if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
-                  //@ts-ignore
-                  return category?.category?.name
-                })}
+                {project?.category_label  
+                  ? project?.category_label 
+                  : pc?.map((category, idx) => {
+                    console.log({category})
+                    //@ts-ignore
+                    if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
+                    //@ts-ignore
+                    return category?.category?.name
+                  })
+                }
+                
               </p>
             </div>
             <div>
