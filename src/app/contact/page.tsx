@@ -3,6 +3,7 @@ import supabase from "@/utils/supabase";
 import Layout from "@/components/Layout";
 import { Icon } from "@iconify/react";
 import { SOCIALLIST } from "@/lib/configs";
+import FullPageLoading from "@/components/FullPageLoading";
 export const dynamic = 'force-static';
 // export const revalidate = 0
 const Contact = async () => {
@@ -23,7 +24,7 @@ const Contact = async () => {
   const profileData = profile?.[0];
 
   return (
-    <Suspense>
+    <Suspense fallback={<FullPageLoading />}>
       <Layout pathname="/contact">
         <div className="h-[440px] lg:flex hidden">
           <div className="w-[50%] h-full flex flex-col justify-center items-end gap-3 text-right pr-[5rem]">

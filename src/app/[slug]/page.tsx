@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 // import { createClient } from "@/utils/supabase/server";
 import supabase from "@/utils/supabase";
 // import { createClient } from "@supabase/supabase-js";
@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import ProjectCard from "@/components/ProjectCard";
 import { IProjectCategories } from "@/common/projects.type";
 import { projectCategoryType } from "@/common/categories.type";
+import FullPageLoading from "@/components/FullPageLoading";
 
 export const revalidate = 1000;
 export const dynamicParams = true;
@@ -52,18 +53,20 @@ export default async function HomeSlug({ params }: { params: { slug: string } })
   })
 
   return (
-    <Layout pathname="/" category={category}>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
-        {projectShow?.map((project) => {
-          return (
-            <ProjectCard project={project} />
-          )
-        })}
+    <Suspense fallback={<FullPageLoading />}>
+      <Layout pathname="/" category={category}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
+          {projectShow?.map((project) => {
+            return (
+              <ProjectCard project={project} />
+            )
+          })}
 
-        {!projects?.length && (
-          <p className="text-lg">No project.</p>
-        )}
-      </div>
-    </Layout>
+          {!projects?.length && (
+            <p className="text-lg">No project.</p>
+          )}
+        </div>
+      </Layout>
+    </Suspense>
   );
 }

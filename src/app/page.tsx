@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 // import { createClient } from "@/utils/supabase/server";
 import supabase from "@/utils/supabase";
 import Layout from "@/components/Layout";
@@ -7,6 +7,7 @@ import { projectCategoryType } from '@/common/categories.type';
 import ProjectCard from "@/components/ProjectCard";
 import { removeDuplicatesByKey } from "@/lib/utils";
 import { IProjectCategories } from "@/common/projects.type";
+import FullPageLoading from "@/components/FullPageLoading";
 
 export const dynamic = 'force-static';
 
@@ -33,19 +34,21 @@ export default async function Home() {
   projectShow?.sort((a, b) => a?.position - b?.position)
 
   return (
-    <Layout pathname="/">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[8px]">
-        {projectShow?.map((project) => {
-          return (
-            <ProjectCard project={project} />
-          )
-        })}
+    <Suspense fallback={<FullPageLoading />}>
+      <Layout pathname="/">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[8px]">
+          {projectShow?.map((project) => {
+            return (
+              <ProjectCard project={project} />
+            )
+          })}
 
-        {!projects?.length && (
-          <p className="text-lg">No project.</p>
-        )}
-      </div>
-    </Layout>
+          {!projects?.length && (
+            <p className="text-lg">No project.</p>
+          )}
+        </div>
+      </Layout>
+    </Suspense>
   );
 }
 
