@@ -1,6 +1,6 @@
-"use client";
+// "use client";
 
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense } from 'react'
 // import { createClient } from "@/utils/supabase/server";
 import supabase from '@/utils/supabase';
 import Layout from '@/components/Layout';
@@ -10,7 +10,7 @@ import FadeInContainer from '@/components/FadeInContainer';
 import { AdditionalFieldType, IProject, IProjectCategories } from '@/common/projects.type';
 import FullPageLoading from '@/components/FullPageLoading';
 import ProjectDetailClient from '@/components/pages/ProjectDetail';
-import { useParams } from 'next/navigation';
+import ProjectDetailContainer from '@/components/pages/ProjectDetail/container';
 import { IShowcaseProject } from '@/common/showcase.type';
 
 // export const revalidate = 1000;
@@ -27,13 +27,14 @@ interface HomePageProps {
 }
 
 // const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
-const ProjectDetail = () => {
-  const { slug } = useParams();
+const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
+  const { slug } = params;
 
-  const [project, setProject] = useState<Partial<IProject> | null>()
-  const [additionalFields, setAdditionalFields] = useState<AdditionalFieldType[]>([])
-  const [showcase, setShowcase] = useState<IShowcaseProject[]>();
-  const [pc, setPc] = useState<Partial<IProjectCategories>[]>()
+  // const [project, setProject] = useState<Partial<IProject> | null>()
+  // const [additionalFields, setAdditionalFields] = useState<AdditionalFieldType[]>([])
+  // const [showcase, setShowcase] = useState<IShowcaseProject[]>();
+  // const [pc, setPc] = useState<Partial<IProjectCategories>[]>()
+
   // const { slug } = params
 
   // const { data, error } = await supabase
@@ -70,58 +71,60 @@ const ProjectDetail = () => {
 
   // console.log({project, showcase, pc})
 
-  useEffect(() => {
-    fetchSupabase()
-  }, [])
+  // useEffect(() => {
+  //   fetchSupabase()
+  // }, [])
 
-  const fetchSupabase = async () => {
-    const { data, error } = await supabase
-      .from('projects')
-      .select(`
-        id,
-        title,
-        link_teaser,
-        client_name,
-        category_label,
-        banner_url,
-        cover_image_url,
-        date_month_project,
-        role,
-        additional_fields,
-        category (name),
-        showcase_project (is_video, link)
-      `)
-      // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
-      .eq('id', slug)
-      .returns<IProject[]>();
+  // const fetchSupabase = async () => {
+  //   const { data, error } = await supabase
+  //     .from('projects')
+  //     .select(`
+  //       id,
+  //       title,
+  //       link_teaser,
+  //       client_name,
+  //       category_label,
+  //       banner_url,
+  //       cover_image_url,
+  //       date_month_project,
+  //       role,
+  //       additional_fields,
+  //       category (name),
+  //       showcase_project (is_video, link)
+  //     `)
+  //     // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
+  //     .eq('id', slug)
+  //     .returns<IProject[]>();
 
-    const { data: pc } = await supabase
-      .from('project_categories')
-      .select(`
-        id,
-        category (name)
-      `)
-      .eq('project_id', slug)
+  //   const { data: pc } = await supabase
+  //     .from('project_categories')
+  //     .select(`
+  //       id,
+  //       category (name)
+  //     `)
+  //     .eq('project_id', slug)
 
-    setProject(data?.[0])
-    setAdditionalFields(data?.[0]?.additional_fields ? JSON.parse(data?.[0]?.additional_fields) : [])
-    setShowcase(data?.[0]?.showcase_project ? data?.[0].showcase_project : [])
-    setPc(pc!)
-  }
+  //   setProject(data?.[0])
+  //   setAdditionalFields(data?.[0]?.additional_fields ? JSON.parse(data?.[0]?.additional_fields) : [])
+  //   setShowcase(data?.[0]?.showcase_project ? data?.[0].showcase_project : [])
+  //   setPc(pc!)
+  // }
 
-  console.log({project, showcase})
+  // console.log({project, showcase})
 
   return (
     // <Suspense fallback={<FullPageLoading />}>
       <Layout pathname='/projects'>
-        {project && pc && (
+        {/* {project && pc && (
           <ProjectDetailClient
             project={project!}
             additionalFields={additionalFields}
             pc={pc!}
             showcase={showcase!}
           />
-        )}
+        )} */}
+
+        <ProjectDetailContainer params={params}/>
 
         {/* <div className=''>
             <div

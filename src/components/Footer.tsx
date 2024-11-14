@@ -9,12 +9,12 @@ const Footer: React.FC = async () => {
   const { data } = await supabase
     .from('social')
     .select(`
-      *
+      key, link
     `)
   const { data: profile } = await supabase
     .from('profile')
     .select(`
-      *
+      about, email, mobile, copyright
     `)
 
   return (

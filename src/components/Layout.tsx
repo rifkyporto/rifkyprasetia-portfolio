@@ -16,7 +16,7 @@ const Layout = async ({ children, pathname, category }: LayoutProps ) => {
   const { data: dataCategory } = await supabase
     .from('category')
     .select(`
-      *
+      position, slug, name
     `)
 
   return (

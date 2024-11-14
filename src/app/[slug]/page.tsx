@@ -14,7 +14,7 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const { data: categories } = await supabase
     .from('category')
-    .select('*');
+    .select('id, slug');
 
   return categories?.map((category) => ({
     slug: category.slug || category.id.toString(),

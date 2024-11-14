@@ -10,14 +10,14 @@ const Contact = async () => {
   const { data: profile } = await supabase
     .from('profile')
     .select(`
-      *
+      display_name, email, mobile, profile_img
     `)
     .eq('id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
 
   const { data: socials } = await supabase
     .from('social')
     .select(`
-      *
+      key, username
     `)
     .eq('is_show_contact_page', true)
   console.log({profile, socials})
@@ -64,14 +64,15 @@ const Contact = async () => {
           <div className="w-full h-full flex flex-col justify-center mt-20 items-end gap-3 text-right sm:pr-[5rem] pr-5">
             <p className="text-4xl font-semibold">{profileData?.display_name}</p>
             <div className="flex flex-col gap-1 text-xl">
-              {/* {socials?.map((social) => {
+              {socials?.map((social) => {
                 return (
-                  <div>
-                  
+                  <div className="flex gap-2 items-center">
+                    <Icon className="text-2xl" icon={SOCIALLIST?.find((socialItem) => socialItem?.socialKey === social?.key)?.logo!}/>
+                    <p>{social?.username}</p>
                   </div>
                 )
-              })} */}
-              <p>@rifkyprasetya</p>
+              })}
+              {/* <p>@rifkyprasetya</p> */}
               <p>{profileData?.email}</p>
               <p>{profileData?.mobile}</p>
             </div>
