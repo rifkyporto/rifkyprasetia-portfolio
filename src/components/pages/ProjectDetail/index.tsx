@@ -8,6 +8,7 @@ import { Icon } from '@iconify/react';
 import { IShowcaseProject } from '@/common/showcase.type';
 
 const ProjectDetailClient = ({ project, pc, showcase, additionalFields }: { project: Partial<IProject>, pc: Partial<IProjectCategories>[], showcase: IShowcaseProject[], additionalFields: AdditionalFieldType[] }) => {
+  console.log({showcase})
   return (
     <div className=''>
       {/* <div className='relative w-full mb-32'> */}
