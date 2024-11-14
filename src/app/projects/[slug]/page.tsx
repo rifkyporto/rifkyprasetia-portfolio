@@ -25,18 +25,29 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
   // const categories: projectCategoryType[] = projectCategories;
   const { slug } = params
 
-  let query = supabase
+  // let query = 
+
+  const { data, error } = await supabase
     .from('projects')
     .select(`
-      *,
+      id,
+      title,
+      link_teaser,
+      client_name,
+      category_label,
+      banner_url,
+      cover_image_url,
+      date_month_project,
+      role,
+      additional_fields,
       category (name),
-      showcase_project (*)
+      showcase_project (is_video, link)
     `)
     // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
     .eq('id', slug)
+    .returns<IProject[]>();
 
-  const { data, error } = await query
-  const project: IProject = data?.length ? data[0] : null;
+  const project: Partial<IProject> | null = data?.[0] as Partial<IProject> | null;
   const additionalFields = project?.additional_fields ? JSON.parse(project?.additional_fields) : []
   const showcase = project && project.showcase_project;
 
