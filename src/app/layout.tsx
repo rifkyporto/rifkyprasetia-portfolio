@@ -2,6 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { NavigationEvents } from './navigation-events';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -25,6 +26,9 @@ export default function RootLayout({
           <main className="min-h-screen flex flex-col items-center">
             {children}
           </main>
+        </Suspense>
+        <Suspense fallback={null}>
+          <NavigationEvents />
         </Suspense>
       </body>
     </html>
