@@ -32,3 +32,9 @@ export interface IProjectCategories {
   user_id: string,
   projects: IProject
 }
+
+export interface AdditionalFieldType {
+  id: string;
+  label: string;
+  value: string;
+}

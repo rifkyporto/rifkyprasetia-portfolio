@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import FadeInContainer from '@/components/FadeInContainer';
 import { IProject } from '@/common/projects.type';
 import FullPageLoading from '@/components/FullPageLoading';
+import ProjectDetailClient from '@/components/pages/ProjectDetail';
+
 export const revalidate = 1000;
 export const dynamicParams = true;
 
@@ -15,17 +17,13 @@ export async function generateStaticParams() {
 }
 
 interface HomePageProps {
-  // categories: projectCategoryType[];
   params: {
     slug: string;
   };
 }
 
 const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
-  // const categories: projectCategoryType[] = projectCategories;
   const { slug } = params
-
-  // let query = 
 
   const { data, error } = await supabase
     .from('projects')
@@ -57,15 +55,19 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       id,
       category (name)
     `)
-    // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
     .eq('project_id', slug)
 
   console.log({project, showcase, pc})
   return (
     <Suspense fallback={<FullPageLoading />}>
       <Layout pathname='/projects'>
-        <div className=''>
-          {/* <div className='relative w-full mb-32'> */}
+        <ProjectDetailClient
+          project={project!}
+          additionalFields={additionalFields}
+          pc={pc!}
+          showcase={showcase!}
+        />
+        {/* <div className=''>
             <div
               className="relative w-full h-screen min-h-[50rem] max-h-[75rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
               style={{
@@ -97,42 +99,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
 
               </div>
             </div>
-            
-            {/* <div className='absolute bottom-0 flex gap-[10rem] mb-52 max-w-[62rem] lg:w-auto w-[90%] mx-auto'>
-              <div className='flex flex-col gap-8'>
-                <div>
-                  <p className='font-bold'>Project Type</p>
-                  <p className='text-[0.9rem] font-extralight'>
-                    {pc?.map((category, idx) => {
-                      console.log({category})
-                      //@ts-ignore
-                      if (pc.length > 1 && idx < pc.length -1) return `${category?.category?.name} / `
-                      //@ts-ignore
-                      return category?.category?.name
-                    })}
-                  </p>
-                </div>
-                <div>
-                  <p className='font-bold'>Role</p>
-                  <p className='text-[0.9rem] font-extralight'>{project?.role}</p>
-                </div>
-                <div>
-                  <p className='font-bold'>Client</p>
-                  <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-                </div>
-              </div>
-              <div className='flex flex-col gap-8'>
-                <div>
-                  <p className='font-bold'>Date</p>
-                  <p className='text-[0.9rem] font-extralight'>{project?.date_month_project}</p>
-                </div>
-                <div>
-                  <p className='font-bold'>Watch</p>
-                  <p className='text-[0.9rem] font-extralight underline'><a href={project?.link_teaser} target='_blank'>Click here</a></p>
-                </div>
-              </div>
-            </div> */}
-          {/* </div> */}
+
           <div className='-translate-y-40 flex gap-[10rem] max-w-[62rem] lg:w-auto w-[90%] mx-auto z-[100]'>
             <div className='flex flex-col gap-8'>
               <div>
@@ -222,7 +189,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
               : ""
             }
           </div>
-        </div>
+        </div> */}
         
       </Layout>
     </Suspense>
