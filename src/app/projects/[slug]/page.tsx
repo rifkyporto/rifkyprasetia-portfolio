@@ -9,12 +9,12 @@ import { IProject } from '@/common/projects.type';
 import FullPageLoading from '@/components/FullPageLoading';
 import ProjectDetailClient from '@/components/pages/ProjectDetail';
 
-export const revalidate = 1000;
-export const dynamicParams = true;
+// export const revalidate = 1000;
+// export const dynamicParams = true;
 
-export async function generateStaticParams() {
-  return []
-}
+// export async function generateStaticParams() {
+//   return []
+// }
 
 interface HomePageProps {
   params: {
