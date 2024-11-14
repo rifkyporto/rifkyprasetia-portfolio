@@ -112,7 +112,7 @@ const ProjectDetailContainer = ({ params }: HomePageProps) => {
   console.log({project, showcase})
 
   return (
-    <>
+    <Suspense fallback={<FullPageLoading />}>
       {project && pc && (
         <ProjectDetailClient
           project={project!}
@@ -121,7 +121,7 @@ const ProjectDetailContainer = ({ params }: HomePageProps) => {
           showcase={showcase!}
         />
       )}
-    </>
+    </Suspense>
   )
 }
 

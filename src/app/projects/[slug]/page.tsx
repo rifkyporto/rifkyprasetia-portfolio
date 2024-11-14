@@ -113,7 +113,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
   // console.log({project, showcase})
 
   return (
-    // <Suspense fallback={<FullPageLoading />}>
+    <Suspense fallback={<FullPageLoading />}>
       <Layout pathname='/projects'>
         {/* {project && pc && (
           <ProjectDetailClient
