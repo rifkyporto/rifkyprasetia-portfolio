@@ -61,6 +61,8 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       role,
       additional_fields,
       category (name),
+      banner_Xaxis,
+      banner_Yaxis,
       showcase_project (is_video, link)
     `)
     // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
@@ -135,12 +137,13 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
         )} */}
 
         {/* <ProjectDetailContainer params={params}/> */}
-
+          {/* min-h-[50rem] max-h-[75rem] */}
         <div className=''>
           <div
-            className="relative w-full h-screen min-h-[50rem] max-h-[75rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
+            className="relative w-full h-screen min-h-[55rem] max-h-[80rem] flex justify-start items-end bg-no-repeat bg-cover background-image"
             style={{
-              backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`
+              backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`,
+              backgroundPosition: `${project?.banner_Xaxis || 50}% ${project?.banner_Yaxis || 50}%`
             }}
           >
             <div className='overflow-hidden h-full relative lg:w-full w-[95%] max-w-[64rem] mx-auto z-10'>

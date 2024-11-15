@@ -49,7 +49,7 @@ const Footer: React.FC = async () => {
           <p className='text-2xl font-semibold text-[#B7BF99]'>Contact</p>
           <div className='font-thin'>
             <p>{profile?.[0]?.email}</p>
-            <p>{profile?.[0]?.mobile}</p>
+            {/* <p>{profile?.[0]?.mobile}</p> */}
           </div>
         </div>
       </div>

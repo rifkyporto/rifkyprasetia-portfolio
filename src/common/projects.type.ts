@@ -17,6 +17,8 @@ export interface IProject {
   banner_url: string;
   position: number;
   additional_fields: string;
+  banner_Xaxis: number;
+  banner_Yaxis: number;
 
   category: ICategory;
   showcase_project: IShowcaseProject[];
