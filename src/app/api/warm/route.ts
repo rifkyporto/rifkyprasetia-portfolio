@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 
-export default async function POST(
+export async function POST(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
