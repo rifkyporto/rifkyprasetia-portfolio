@@ -1,16 +1,18 @@
 // pages/api/revalidate.ts
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { revalidatePath, revalidateTag } from 'next/cache'
+import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
 export async function POST(
-  req: NextApiRequest,
+  req: NextRequest,
   res: NextApiResponse
 ) {
   // Verify the request is from Vercel
   // You should set this in your Vercel environment variables
-  const token = req.headers.authorization?.split(' ')[1]
+  const token = req.headers.get('authorization')?.split(' ')[1];
   if (token !== process.env.REVALIDATE_TOKEN) {
-    return res.status(401).json({ message: 'Invalid token' })
+    return NextResponse.json({ message: 'Invalid token' }, { status: 401 })
   }
 
   try {
