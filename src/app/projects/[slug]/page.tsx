@@ -38,48 +38,48 @@ interface HomePageProps {
 
 // const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
 const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
-  const { slug } = params;
+  // const { slug } = params;
 
   // const [project, setProject] = useState<Partial<IProject> | null>()
   // const [additionalFields, setAdditionalFields] = useState<AdditionalFieldType[]>([])
   // const [showcase, setShowcase] = useState<IShowcaseProject[]>();
   // const [pc, setPc] = useState<Partial<IProjectCategories>[]>()
 
-  // const { slug } = params
+  const { slug } = params
 
-  // const { data, error } = await supabase
-  //   .from('projects')
-  //   .select(`
-  //     id,
-  //     title,
-  //     link_teaser,
-  //     client_name,
-  //     category_label,
-  //     banner_url,
-  //     cover_image_url,
-  //     date_month_project,
-  //     role,
-  //     additional_fields,
-  //     category (name),
-  //     showcase_project (is_video, link)
-  //   `)
-  //   // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
-  //   .eq('id', slug)
-  //   .returns<IProject[]>();
+  const { data, error } = await supabase
+    .from('projects')
+    .select(`
+      id,
+      title,
+      link_teaser,
+      client_name,
+      category_label,
+      banner_url,
+      cover_image_url,
+      date_month_project,
+      role,
+      additional_fields,
+      category (name),
+      showcase_project (is_video, link)
+    `)
+    // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
+    .eq('id', slug)
+    .returns<IProject[]>();
 
-  // const project: Partial<IProject> | null = data?.[0] as Partial<IProject> | null;
-  // const additionalFields = project?.additional_fields ? JSON.parse(project?.additional_fields) : []
-  // const showcase = project && project.showcase_project;
+  const project: Partial<IProject> | null = data?.[0] as Partial<IProject> | null;
+  const additionalFields = project?.additional_fields ? JSON.parse(project?.additional_fields) : []
+  const showcase = project && project.showcase_project;
 
-  // const { data: pc } = await supabase
-  //   .from('project_categories')
-  //   .select(`
-  //     id,
-  //     category (name)
-  //   `)
-  //   .eq('project_id', slug)
+  const { data: pc } = await supabase
+    .from('project_categories')
+    .select(`
+      id,
+      category (name)
+    `)
+    .eq('project_id', slug)
 
-  // console.log({project, showcase, pc})
+  console.log({project, showcase, pc})
 
   // useEffect(() => {
   //   fetchSupabase()
@@ -134,9 +134,9 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
           />
         )} */}
 
-        <ProjectDetailContainer params={params}/>
+        {/* <ProjectDetailContainer params={params}/> */}
 
-        {/* <div className=''>
+        <div className=''>
             <div
               className="relative w-full h-screen min-h-[50rem] max-h-[75rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
               style={{
@@ -258,7 +258,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
               : ""
             }
           </div>
-        </div> */}
+        </div>
         {/* <p>s</p> */}
       </Layout>
     // </Suspense>
