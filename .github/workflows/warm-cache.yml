@@ -1,0 +1,16 @@
+# .github/workflows/warm-cache.yml
+name: Warm Cache After Deploy
+
+on:
+  deployment_status
+
+jobs:
+  warm-cache:
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Warm Cache
+        run: |
+          curl -X POST ${{ secrets.DEPLOYMENT_WEBHOOK_URL }} \
+          -H "Authorization: Bearer ${{ secrets.REVALIDATE_TOKEN }}" \
+          -H "Content-Type: application/json"
