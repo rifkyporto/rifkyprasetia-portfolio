@@ -18,7 +18,7 @@ const Navbar = ({ categories, pathname, category }: NavbarType) => {
       <nav className='mt-10 flex flex-col gap-8'>
         <Link href={"/"}>
           <div className='flex flex-col justify-center items-center gap-3'>
-            <div className='flex justify-end w-[260px]'>
+            <div className='flex justify-end w-[270px]'>
               <div className='flex gap-1'>
                 <div className='bg-[#B7BF99] rounded-full w-[15px] h-[15px]'></div>
                 <div className='bg-[#EDAA25] rounded-full w-[15px] h-[15px]'></div>
