@@ -27,7 +27,7 @@ export default function RootLayout({
             {children}
           </main>
         </Suspense>
-        <Suspense fallback={null}>
+        <Suspense>
           <NavigationEvents />
         </Suspense>
       </body>
