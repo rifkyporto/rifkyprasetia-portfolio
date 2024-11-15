@@ -10,6 +10,8 @@ import { IProjectCategories } from "@/common/projects.type";
 import FullPageLoading from "@/components/FullPageLoading";
 
 export const dynamic = 'force-static';
+export const revalidate = false
+export const dynamicParams = true;
 
 export default async function Home() {
   // const supabase = createClient();

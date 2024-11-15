@@ -4,8 +4,12 @@ import Layout from "@/components/Layout";
 import { Icon } from "@iconify/react";
 import { SOCIALLIST } from "@/lib/configs";
 import FullPageLoading from "@/components/FullPageLoading";
+
 export const dynamic = 'force-static';
 // export const revalidate = 0
+export const revalidate = false
+export const dynamicParams = true;
+
 const Contact = async () => {
   const { data: profile } = await supabase
     .from('profile')

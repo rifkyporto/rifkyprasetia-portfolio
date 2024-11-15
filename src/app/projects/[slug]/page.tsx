@@ -137,37 +137,37 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
         {/* <ProjectDetailContainer params={params}/> */}
 
         <div className=''>
-            <div
-              className="relative w-full h-screen min-h-[50rem] max-h-[75rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
-              style={{
-                backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`
-              }}
-            >
-              <div className='overflow-hidden h-full relative lg:w-full w-[95%] max-w-[64rem] mx-auto z-10'>
-                <div className='relative overflow-hidden h-full w-full'>
-                <div className='absolute inset-0'>
+          <div
+            className="relative w-full h-screen min-h-[50rem] max-h-[75rem] flex justify-start items-end bg-center bg-no-repeat bg-cover background-image"
+            style={{
+              backgroundImage: `url("${project?.banner_url || project?.cover_image_url}")`
+            }}
+          >
+            <div className='overflow-hidden h-full relative lg:w-full w-[95%] max-w-[64rem] mx-auto z-10'>
+              <div className='relative overflow-hidden h-full w-full'>
+              <div className='absolute inset-0'>
 
-                  <div className='absolute flex w-full justify-between items-center bottom-[20%]'>
-                    <FadeInContainer>
-                    <div className="md:w-[40rem] bottom-[20%] z-10 text-center text-white p-4 flex items-end">
-                      <h1 className="md:text-6xl text-5xl font-bold text-start mb-2 leading-[5rem]">{project?.title}</h1>
-                    </div>
-                    </FadeInContainer>
-                    <div className='relative right-10 md:block hidden animate-[fadeIn_2s_ease-in_forwards] opacity-0'>
-                      <a href={project?.link_teaser} target='_blank'>
-                        <Button variant={'secondary'} className='bg-white text-black'>
-                          <Icon icon="zondicons:play" className='text-[1.5rem]' />
-                          Watch
-                        </Button>
-                      </a>
-                    </div>
+                <div className='absolute flex w-full justify-between items-center bottom-[20%]'>
+                  <FadeInContainer>
+                  <div className="md:w-[40rem] bottom-[20%] z-10 text-center text-white sm:p-4 p-2 flex items-end">
+                    <h1 className="md:text-6xl text-5xl font-bold text-start mb-2 leading-[5rem]">{project?.title}</h1>
+                  </div>
+                  </FadeInContainer>
+                  <div className='relative right-10 md:block hidden animate-[fadeIn_2s_ease-in_forwards] opacity-0'>
+                    <a href={project?.link_teaser} target='_blank'>
+                      <Button variant={'secondary'} className='bg-white text-black'>
+                        <Icon icon="zondicons:play" className='text-[1.5rem]' />
+                        Watch
+                      </Button>
+                    </a>
                   </div>
                 </div>
-                </div>
-
-
               </div>
+              </div>
+
+
             </div>
+          </div>
 
           <div className='-translate-y-40 flex gap-[10rem] max-w-[62rem] lg:w-auto w-[90%] mx-auto z-[100]'>
             <div className='flex flex-col gap-8'>

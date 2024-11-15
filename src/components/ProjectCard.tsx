@@ -31,15 +31,15 @@ const ProjectCard: React.FC<ProjectCardType> = ({ className, project }) => {
         style={{ aspectRatio: '16 / 9' }}
       >
         {/* <Icon icon="mdi:external-link" className='sm:hidden absolute right-3 top-3 z-[99999999] text-2xl' /> */}
-        <img
+        <Image
           // src="https://static.wixstatic.com/media/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.jpg/v1/fit/w_972,h_548,q_90/d9f26d_bfde3c5382e841e290e1026b3784e532~mv2.webp"
           src={project?.cover_image_url}
           alt={project?.title + " project"}
-          // fill
+          fill
           className={`absolute inset-0 dark:invert ${isOverlayInspect && "grayscale brightness-75 contrast-100"} transition-all ease-out duration-700 w-[100%] h-full object-cover`}
           // width={320}
           // height={100}
-          // priority
+          priority
         />
         {isOverlayInspect && (
           <div className={cn(
