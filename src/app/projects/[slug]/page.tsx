@@ -13,12 +13,22 @@ import ProjectDetailClient from '@/components/pages/ProjectDetail';
 import ProjectDetailContainer from '@/components/pages/ProjectDetail/container';
 import { IShowcaseProject } from '@/common/showcase.type';
 
-// export const revalidate = 1000;
-// export const dynamicParams = true;
+export const dynamic = 'force-static'
+export const revalidate = false
+export const dynamicParams = true;
 
-// export async function generateStaticParams() {
-//   return []
-// }
+export async function generateStaticParams() {
+  const { data: projects } = await supabase
+    .from('projects')
+    .select(`
+      id
+    `)
+  if (!projects || !projects.length) return []
+
+  return projects.map((item) => ({
+    slug: item.id,
+  }))
+}
 
 interface HomePageProps {
   params: {
