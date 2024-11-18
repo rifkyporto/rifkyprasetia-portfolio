@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 // import { projectCategories } from "@/common";
+import FadeInContainer from './FadeInContainer';
 import { projectCategoryType } from "@/common/categories.type";
 import { cn } from '@/lib/utils';
 
@@ -19,11 +20,13 @@ const Navbar = ({ categories, pathname, category }: NavbarType) => {
         <Link href={"/"}>
           <div className='flex flex-col justify-center items-center gap-3'>
             <div className='flex justify-end w-[270px]'>
-              <div className='flex gap-1'>
-                <div className='bg-[#B7BF99] rounded-full w-[15px] h-[15px]'></div>
-                <div className='bg-[#EDAA25] rounded-full w-[15px] h-[15px]'></div>
-                <div className='bg-[#C44302] rounded-full w-[15px] h-[15px]'></div>
-              </div>
+              <FadeInContainer className='flex justify-end' isReverse>
+                <div className='flex gap-1'>
+                  <div className='bg-[#C44302] rounded-full w-[15px] h-[15px]'></div>
+                  <div className='bg-[#B7BF99] rounded-full w-[15px] h-[15px]'></div>
+                  <div className='bg-[#EDAA25] rounded-full w-[15px] h-[15px]'></div>
+                </div>
+              </FadeInContainer>
             </div>
             
             <div className='flex flex-col items-center'>
