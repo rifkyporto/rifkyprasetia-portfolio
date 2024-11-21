@@ -60,7 +60,6 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       date_month_project,
       role,
       additional_fields,
-      category (name),
       banner_Xaxis,
       banner_Yaxis,
       showcase_project (is_video, link)
@@ -69,10 +68,27 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
     .eq('id', slug)
     .returns<IProject[]>();
 
+  /*
+      id,
+      title,
+      link_teaser,
+      client_name,
+      category_label,
+      banner_url,
+      cover_image_url,
+      date_month_project,
+      role,
+      additional_fields,
+      category (name),
+      banner_Xaxis,
+      banner_Yaxis,
+      showcase_project (is_video, link)
+  */
+  
   const project: Partial<IProject> | null = data?.[0] as Partial<IProject> | null;
   const additionalFields = project?.additional_fields ? JSON.parse(project?.additional_fields) : []
   const showcase = project && project.showcase_project;
-
+  console.log({project})
   const { data: pc } = await supabase
     .from('project_categories')
     .select(`
