@@ -230,7 +230,16 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
               </div>
               <div>
                 <p className='font-bold'>Role</p>
-                <p className='text-[0.9rem] font-extralight'>{project?.role}</p>
+                {/* <p className='text-[0.9rem] font-extralight'>{project?.role}</p> */}
+                <div className={'text-[0.9rem] font-extralight'}>
+                  {project?.role?.split(/\r?\n/).map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {project?.role && i !== project?.role?.split(/\r?\n/).length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
+                </div>
+                {/* <div className="text-[0.9rem] font-extralight" dangerouslySetInnerHTML={{ __html: project?.role! }} /> */}
               </div>
               {additionalFields?.map((fields: { id: string, value: string, label: string }, idx: number) => {
                 if (idx % 2 === 0) {
