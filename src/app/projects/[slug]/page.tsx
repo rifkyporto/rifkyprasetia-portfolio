@@ -206,10 +206,12 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                   
                 </p>
               </div>
-              <div>
-                <p className='font-bold'>Client</p>
-                <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
-              </div>
+              {project?.client_name && (
+                <div>
+                  <p className='font-bold'>Client</p>
+                  <p className='text-[0.9rem] font-extralight'>{project?.client_name}</p>
+                </div>
+              )}
               {additionalFields?.map((fields: { id: string, value: string, label: string }, idx: number) => {
                 if (idx % 2 !== 0) {
                   return ""
