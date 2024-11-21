@@ -189,7 +189,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
           </div>
 
           <div className='-translate-y-40 flex gap-[10rem] max-w-[62rem] lg:w-auto w-[90%] mx-auto z-[100]'>
-            <div className='flex flex-col gap-8'>
+            <div className='flex flex-col gap-8 w-[40%]'>
               <div>
                 <p className='font-bold'>Project Type</p>
                 <p className='text-[0.9rem] font-extralight'>
@@ -225,7 +225,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                 )
               })}
             </div>
-            <div className='flex flex-col gap-8'>
+            <div className='flex flex-col gap-8 w-[40%]'>
               <div>
                 <p className='font-bold'>Date</p>
                 <p className='text-[0.9rem] font-extralight'>{project?.date_month_project}</p>
