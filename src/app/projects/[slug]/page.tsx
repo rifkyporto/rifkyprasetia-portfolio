@@ -183,8 +183,6 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                 </div>
               </div>
               </div>
-
-
             </div>
           </div>
 
