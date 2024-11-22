@@ -21,7 +21,7 @@ const Contact = async () => {
   const { data: socials } = await supabase
     .from('social')
     .select(`
-      key, username
+      key, username, link
     `)
     .eq('is_show_contact_page', true)
   console.log({profile, socials})
@@ -39,10 +39,10 @@ const Contact = async () => {
               <div className="flex flex-col gap-2 my-1">
                 {socials?.map((social) => {
                   return (
-                    <div className="flex gap-2 items-center">
+                    <a href={social?.link} target="_blank" className="flex gap-2 items-center">
                       <Icon className="text-2xl" icon={SOCIALLIST?.find((socialItem) => socialItem?.socialKey === social?.key)?.logo!}/>
                       <p>{social?.username}</p>
-                    </div>
+                    </a>
                   )
                 })}
               </div>
@@ -56,7 +56,7 @@ const Contact = async () => {
             alt="rifky prasetya"
           />
         </div>
-        <div className="flex lg:hidden h-[400px]"
+        <div className="flex lg:hidden h-[400px] bg-black bg-opacity-25 bg-blend-overlay"
           style={{
             // backgroundImage: `url("https://static.wixstatic.com/media/d9f26d_7f681db388ec4354a1d04b91f5683ad3~mv2.png/v1/fill/w_1200,h_440,al_t,q_90,usm_0.66_1.00_0.01,enc_auto/d9f26d_7f681db388ec4354a1d04b91f5683ad3~mv2.png")`,
             backgroundImage: `url(${profileData?.profile_img})`,
@@ -70,10 +70,10 @@ const Contact = async () => {
             <div className="flex flex-col gap-1 text-xl">
               {socials?.map((social) => {
                 return (
-                  <div className="flex gap-2 items-center">
+                  <a href={social?.link} target="_blank" className="flex gap-2 items-center">
                     <Icon className="text-2xl" icon={SOCIALLIST?.find((socialItem) => socialItem?.socialKey === social?.key)?.logo!}/>
                     <p>{social?.username}</p>
-                  </div>
+                  </a>
                 )
               })}
               {/* <p>@rifkyprasetya</p> */}
