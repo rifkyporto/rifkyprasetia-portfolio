@@ -16,21 +16,21 @@ const Navbar = ({ categories, pathname, category }: NavbarType) => {
 
   return (
     <Suspense>
-      <nav className='mt-10 flex flex-col gap-8'>
+      <nav className='mt-5 flex flex-col gap-4'>
         <Link href={"/"}>
           <div className='flex flex-col justify-center items-center gap-3'>
             <div className='flex justify-end w-[270px]'>
               <FadeInContainer className='flex justify-end' isReverse>
                 <div className='flex gap-1'>
                   <div className='bg-[#C44302] rounded-full w-[15px] h-[15px]'></div>
-                  <div className='bg-[#B7BF99] rounded-full w-[15px] h-[15px]'></div>
                   <div className='bg-[#EDAA25] rounded-full w-[15px] h-[15px]'></div>
+                  <div className='bg-[#B7BF99] rounded-full w-[15px] h-[15px]'></div>
                 </div>
               </FadeInContainer>
             </div>
             
             <div className='flex flex-col items-center'>
-              <p className='text-3xl text-white font-semibold'>RIFKY B. PRASETIA</p>
+              <p className='text-[28px] text-white font-semibold'>RIFKY B. PRASETIA</p>
               <div className='italic text-[18px] font-extralight flex gap-1'>
                 <aside className='text-[#C44302]'>cinematographer</aside>
                 <aside className='text-[#EDAA25]'>colorist</aside>
