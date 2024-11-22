@@ -139,7 +139,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
   // }
 
   // console.log({project, showcase})
-
+  // console.log({ee:})
   return (
     <Suspense fallback={<FullPageLoading />}>
       <Layout pathname='/projects'>
@@ -220,7 +220,15 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                 return (
                   <div>
                     <p className='font-bold'>{fields?.label}</p>
-                    <p className='text-[0.9rem] font-extralight'>{fields?.value}</p>
+                    {/* <p className='text-[0.9rem] font-extralight'>{fields?.value}</p> */}
+                    <div className={'text-[0.9rem] font-extralight'}>
+                      {fields?.value?.split(/\r?\n/).map((line, i) => (
+                        <React.Fragment key={i}>
+                          {line}
+                          {fields?.value && i !== fields?.value?.split(/\r?\n/).length - 1 && <br />}
+                        </React.Fragment>
+                      ))}
+                    </div>
                   </div>
                 )
               })}
