@@ -31,7 +31,7 @@ export const generateMetadata = async ({
 }: Props): Promise<Metadata> => {
   const { data: projectData } = await supabase
     .from('projects')
-    .select('title, client_name, role')
+    .select('title, client_name, role, cover_image_url, banner_url')
     .eq('id', params.slug)
     .single();
 
@@ -40,6 +40,12 @@ export const generateMetadata = async ({
     title: `${projectTitle} | by Rifky Prasetia 🎥`,
     description: "",
     keywords: `rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez, ${projectData?.client_name}, ${projectData?.title}, ${projectData?.role}`,
+    openGraph: {
+      title: `${projectTitle} | by Rifky Prasetia 🎥`,
+      description: "",
+      url: `https://rifkyprasetia.com/projects/${params.slug}`,
+      images: [projectData?.banner_url || projectData?.cover_image_url],
+    },
   };
 };
 

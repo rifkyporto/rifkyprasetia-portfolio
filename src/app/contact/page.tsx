@@ -12,11 +12,24 @@ export const revalidate = false
 export const dynamicParams = true;
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  
+  const { data: profile } = await supabase
+    .from('profile')
+    .select(`
+      display_name, email, mobile, profile_img
+    `)
+    .eq('id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
+    .single()
+
   return {
     title: `Contact | Rifky Prasetia 📞`,
     description: "",
     keywords: "rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez",
+    openGraph: {
+      title: `Contact | Rifky Prasetia 📞`,
+      description: "",
+      url: `https://rifkyprasetia.com/contact`,
+      images: [profile?.profile_img],
+    },
   };
 };
 
