@@ -13,10 +13,35 @@ import ProjectDetailClient from '@/components/pages/ProjectDetail';
 import ProjectDetailContainer from '@/components/pages/ProjectDetail/container';
 import { IShowcaseProject } from '@/common/showcase.type';
 import InstagramReels from '@/components/InstagramReel';
+import { Metadata } from 'next';
 
 export const dynamic = 'force-static'
 export const revalidate = false
 export const dynamicParams = true;
+
+type Props = {
+  params: {
+    slug: string;
+    locale: string;
+  };
+};
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { data: projectData } = await supabase
+    .from('projects')
+    .select('title, client_name, role')
+    .eq('id', params.slug)
+    .single();
+
+  const projectTitle = projectData?.title;
+  return {
+    title: `${projectTitle} | by Rifky Prasetia 🎥`,
+    description: "",
+    keywords: `rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez, ${projectData?.client_name}, ${projectData?.title}, ${projectData?.role}`,
+  };
+};
 
 export async function generateStaticParams() {
   const { data: projects } = await supabase

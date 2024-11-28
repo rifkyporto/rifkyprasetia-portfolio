@@ -7,9 +7,17 @@ import ProjectCard from "@/components/ProjectCard";
 import { IProjectCategories } from "@/common/projects.type";
 import { projectCategoryType } from "@/common/categories.type";
 import FullPageLoading from "@/components/FullPageLoading";
+import { Metadata } from "next";
 
 export const revalidate = 1000;
 export const dynamicParams = true;
+
+type Props = {
+  params: {
+    slug: string;
+    locale: string;
+  };
+};
 
 export async function generateStaticParams() {
   const { data: categories } = await supabase
@@ -20,6 +28,23 @@ export async function generateStaticParams() {
     slug: category.slug || category.id.toString(),
   })) ?? [];
 }
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { data: categoryData } = await supabase
+    .from('category')
+    .select('slug, name')
+    .eq('slug', params.slug)
+    .single();
+
+  const categoryName = categoryData?.name;
+  return {
+    title: `${categoryName} | Rifky Prasetia 🎥`,
+    description: "",
+    keywords: "rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez",
+  };
+};
 
 export default async function HomeSlug({ params }: { params: { slug: string } }) {
   const { data: categoryData } = await supabase

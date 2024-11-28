@@ -4,11 +4,21 @@ import Layout from "@/components/Layout";
 import { Icon } from "@iconify/react";
 import { SOCIALLIST } from "@/lib/configs";
 import FullPageLoading from "@/components/FullPageLoading";
+import { Metadata } from "next";
 
 export const dynamic = 'force-static';
 // export const revalidate = 0
 export const revalidate = false
 export const dynamicParams = true;
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  
+  return {
+    title: `Contact | Rifky Prasetia 📞`,
+    description: "",
+    keywords: "rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez",
+  };
+};
 
 const Contact = async () => {
   const { data: profile } = await supabase

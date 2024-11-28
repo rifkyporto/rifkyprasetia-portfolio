@@ -8,10 +8,31 @@ import ProjectCard from "@/components/ProjectCard";
 import { removeDuplicatesByKey } from "@/lib/utils";
 import { IProjectCategories } from "@/common/projects.type";
 import FullPageLoading from "@/components/FullPageLoading";
+import { Metadata } from "next";
 
 export const dynamic = 'force-static';
 export const revalidate = false
 export const dynamicParams = true;
+
+type Props = {
+  params: {
+    slug: string;
+    locale: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export const generateMetadata = async ({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> => {
+  
+  return {
+    title: `Projects | Rifky Prasetia 🎥`,
+    description: "",
+    keywords: "rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez",
+  };
+};
 
 export default async function Home() {
   // const supabase = createClient();
