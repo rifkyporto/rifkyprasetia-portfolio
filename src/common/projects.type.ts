@@ -11,6 +11,7 @@ export interface IProject {
   client_name: string;
   date_month_project: string;
   link_teaser: string;
+  is_video_istrailer: boolean;
   user_id: string;
   created_at: string;
   cover_image_url: string;

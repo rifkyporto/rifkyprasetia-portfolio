@@ -12,6 +12,7 @@ import FullPageLoading from '@/components/FullPageLoading';
 import ProjectDetailClient from '@/components/pages/ProjectDetail';
 import ProjectDetailContainer from '@/components/pages/ProjectDetail/container';
 import { IShowcaseProject } from '@/common/showcase.type';
+import InstagramReels from '@/components/InstagramReel';
 
 export const dynamic = 'force-static'
 export const revalidate = false
@@ -53,6 +54,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       id,
       title,
       link_teaser,
+      is_video_istrailer,
       client_name,
       category_label,
       banner_url,
@@ -175,8 +177,8 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                   <div className='relative right-10 md:block hidden animate-[fadeIn_0.50s_ease-in_forwards] opacity-0'>
                     <a href={project?.link_teaser} target='_blank'>
                       <Button variant={'secondary'} className='bg-white text-black'>
-                        <Icon icon="zondicons:play" className='text-[1.5rem]' />
-                        Watch
+                        <Icon icon={project?.is_video_istrailer ? "mdi:movie-play-outline" : "zondicons:play"} className='text-[1.5rem]' />
+                        {project?.is_video_istrailer ? "Trailer" : "Watch"}
                       </Button>
                     </a>
                   </div>
@@ -286,6 +288,11 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
                   <img src={show.link} alt="" />
                 )
               } else {
+                if (show?.link.includes('instagram')) {
+                  return (
+                    <InstagramReels url={show?.link}/>
+                  )
+                }
                 return (
                   <iframe
                     width="100%"
