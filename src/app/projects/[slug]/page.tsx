@@ -112,7 +112,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       id,
       category (name)
     `)
-    .eq('project_id', slug)
+    .eq('project_id', data?.[0]?.id)
 
   console.log({project, showcase, pc})
 
