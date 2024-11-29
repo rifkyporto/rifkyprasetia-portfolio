@@ -32,7 +32,7 @@ export const generateMetadata = async ({
   const { data: projectData } = await supabase
     .from('projects')
     .select('title, client_name, role, cover_image_url, banner_url')
-    .eq('id', params.slug)
+    .eq('slug', params.slug)
     .single();
 
   const projectTitle = projectData?.title;
@@ -84,6 +84,7 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
     .select(`
       id,
       title,
+      slug,
       link_teaser,
       is_video_istrailer,
       client_name,
@@ -98,25 +99,8 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
       showcase_project (is_video, link)
     `)
     // .eq('user_id', process.env.NEXT_PUBLIC_SUPABASE_USER_ID)
-    .eq('id', slug)
+    .eq('slug', slug)
     .returns<IProject[]>();
-
-  /*
-      id,
-      title,
-      link_teaser,
-      client_name,
-      category_label,
-      banner_url,
-      cover_image_url,
-      date_month_project,
-      role,
-      additional_fields,
-      category (name),
-      banner_Xaxis,
-      banner_Yaxis,
-      showcase_project (is_video, link)
-  */
   
   const project: Partial<IProject> | null = data?.[0] as Partial<IProject> | null;
   const additionalFields = project?.additional_fields ? JSON.parse(project?.additional_fields) : []
@@ -307,8 +291,8 @@ const ProjectDetail: React.FC<HomePageProps> = async ({ params }) => {
           <div className='w-[91%] mx-auto max-w-[62rem] md:hidden flex justify-end -translate-y-20'>
             <a href={project?.link_teaser} target='_blank'>
               <Button variant={'secondary'} className='bg-white text-black'>
-                <Icon icon="zondicons:play" className='text-[1.5rem]' />
-                Watch
+                <Icon icon={project?.is_video_istrailer ? "mdi:movie-play-outline" : "zondicons:play"} className='text-[1.5rem]' />
+                {project?.is_video_istrailer ? "Trailer" : "Watch"}
               </Button>
             </a>
           </div>

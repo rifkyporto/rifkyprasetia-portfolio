@@ -5,6 +5,7 @@ export interface IProject {
   id: string;
   updated_at: string;
   title: string;
+  slug: string;
   category_id: string;
   category_label: string;
   role: string;

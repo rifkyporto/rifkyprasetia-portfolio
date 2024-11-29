@@ -41,7 +41,7 @@ export default async function Home() {
     .from('project_categories')
     .select(`
       *,
-      projects (*)
+      projects (*, slug)
     `)
 
   const allProjects: IProjectCategories[] = Object.values(
