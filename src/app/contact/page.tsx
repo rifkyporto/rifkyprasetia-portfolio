@@ -21,11 +21,12 @@ export const generateMetadata = async (): Promise<Metadata> => {
     .single()
 
   return {
-    title: `Contact | Rifky Prasetia 📞`,
+    title: `Contact | Rifky Prasetia`,
+    icons: "/icon-metadata.png",
     description: "",
     keywords: "rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez",
     openGraph: {
-      title: `Contact | Rifky Prasetia 📞`,
+      title: `Contact | Rifky Prasetia`,
       description: "",
       url: `https://rifkyprasetia.com/contact`,
       images: [profile?.profile_img],

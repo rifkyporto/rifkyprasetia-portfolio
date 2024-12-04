@@ -40,7 +40,8 @@ export const generateMetadata = async ({
 
   const categoryName = categoryData?.name;
   return {
-    title: `${categoryName} | Rifky Prasetia 🎥`,
+    title: `${categoryName} | Rifky Prasetia`,
+    icons: "/icon-metadata.png",
     description: "",
     keywords: "rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez",
   };

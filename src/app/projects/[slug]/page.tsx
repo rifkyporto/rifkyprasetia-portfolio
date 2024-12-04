@@ -37,11 +37,12 @@ export const generateMetadata = async ({
 
   const projectTitle = projectData?.title;
   return {
-    title: `${projectTitle} | by Rifky Prasetia 🎥`,
+    title: `${projectTitle} | by Rifky Prasetia`,
+    icons: "/icon-metadata.png",
     description: "",
     keywords: `rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez, ${projectData?.client_name}, ${projectData?.title}, ${projectData?.role}`,
     openGraph: {
-      title: `${projectTitle} | by Rifky Prasetia 🎥`,
+      title: `${projectTitle} | by Rifky Prasetia`,
       description: "",
       url: `https://rifkyprasetia.com/projects/${params.slug}`,
       images: [projectData?.banner_url || projectData?.cover_image_url],

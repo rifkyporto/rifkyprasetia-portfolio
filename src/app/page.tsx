@@ -28,7 +28,8 @@ export const generateMetadata = async ({
 }: Props): Promise<Metadata> => {
   
   return {
-    title: `Projects | Rifky Prasetia 🎥`,
+    title: `Projects | Rifky Prasetia`,
+    icons: "/icon-metadata.png",
     description: "",
     keywords: "rifky, rifkyprasetia, rifky prasetia, editor, videographer, photograper, colorist, chandra liow, andovi dalopez",
   };
